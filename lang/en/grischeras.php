@@ -23,7 +23,7 @@
  */
 
 
-$string['pluginname'] = 'My first Moodle plugin';
+$string['modulename'] = 'My first Moodle plugin';
 $string['editingquiz'] = 'Editing quiz';
 $string['editingquiz_help'] = 'Help for editing quiz';
 $string['greeting'] = 'Dear {$a}';
