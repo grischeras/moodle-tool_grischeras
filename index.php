@@ -1,10 +1,9 @@
 <?php
 
 require_once(__DIR__ . '/../../../config.php');
-require_once($CFG->libdir.'/adminlib.php');
+//require_once($CFG->libdir.'/adminlib.php');
 
-
-admin_externalpage_setup('toolgrischeras');
+require_login(null, false);
 // Set up the page.
 $title = get_string('pluginname', 'tool_grischeras');
 $pagetitle = $title;
@@ -17,12 +16,8 @@ $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
 $output = $PAGE->get_renderer('tool_grischeras');
-
+$renderable = new \tool_grischeras\output\index_page('Some demo infos');
 
 echo $output->header();
-echo $output->heading($pagetitle);
-
-$renderable = new \tool_demo\output\index_page('Some text');
 echo $output->render($renderable);
-
 echo $output->footer();
