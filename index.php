@@ -30,8 +30,13 @@ require_login(null, false);
 // Set up the page.
 $title = get_string('pluginname', 'tool_grischeras');
 $pagetitle = $title;
+$courseid = required_param('id', PARAM_INT);
+$url = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
 
-$url = new moodle_url('/admin/tool/grischeras/index.php');
+$PAGE->set_context(context_course::instance($courseid));
+$PAGE->set_url($url);
+$PAGE->set_title($title);
+$PAGE->set_heading($title);
 
 // BREADCUMBS.
 $previewnode = $PAGE->navigation->add(
@@ -46,10 +51,15 @@ $thingnode = $previewnode->add(
 $thingnode->make_active();
 // BREADCUMBS END.
 
-$PAGE->set_context(context_system::instance());
-$PAGE->set_url($url);
-$PAGE->set_title($title);
-$PAGE->set_heading($title);
+// EXTENDING COURSE NAVIGATION.
+$coursenode = $PAGE->navigation->find($courseid, navigation_node::TYPE_COURSE);
+$thingnode = $coursenode->add(
+    $title,
+    $url
+);
+$thingnode->make_active();
+// EXTENDING COURSE NAVIGATION END.
+
 // This avoids the site-administration menu to be rendered.
 $PAGE->set_secondary_navigation(false);
 
