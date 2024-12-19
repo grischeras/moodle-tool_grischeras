@@ -15,6 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * a short description about index_page
  * @package    tool_grischeras
  * @copyright  2024 Alberto Sempreboni
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -30,8 +31,8 @@ use templatable;
 use stdClass;
 
 /**
- * @package    tool_grischeras
  * The class to render plugin's index page
+ * @package    tool_grischeras
  */
 class index_page implements renderable, templatable {
 
@@ -41,6 +42,7 @@ class index_page implements renderable, templatable {
     private string|null $sometext = null;
 
     /**
+     * short description of constructor
      * @param string $sometext
      */
     public function __construct(string $sometext) {
@@ -48,6 +50,7 @@ class index_page implements renderable, templatable {
     }
 
     /**
+     * a short description for this method
      * @param renderer_base $output
      * @return stdClass
      */
