@@ -39,7 +39,7 @@ class index_page implements renderable, templatable {
     /** @var string|null
      * $sometext Some text to show how to pass data to a template.
      */
-    private string|null $sometext = null;
+    private ?string $sometext = null;
 
     /**
      * short description of constructor
