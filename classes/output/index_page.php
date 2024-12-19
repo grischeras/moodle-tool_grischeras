@@ -27,13 +27,15 @@ use stdClass;
  * The class to render plugin's index page
  */
 class index_page implements renderable, templatable {
-    /** @var string $sometext Some text to show how to pass data to a template. */
-    private $sometext = null;
+    /** @var string|null
+     * $sometext Some text to show how to pass data to a template.
+     */
+    private string|null $sometext = null;
 
     /**
-     * @param $sometext
+     * @param string $sometext
      */
-    public function __construct($sometext) {
+    public function __construct(string $sometext) {
         $this->sometext = $sometext;
     }
 
