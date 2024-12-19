@@ -13,9 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+//
+//
+//
 
 /**
- *
  * @package    tool_grischeras
  * @copyright  2024 Alberto Sempreboni
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -33,7 +35,7 @@ $pagetitle = $title;
 
 $url = new moodle_url('/admin/tool/grischeras/index.php');
 
-/** BREADCUMBS*/
+//BREADCUMBS
 $previewnode = $PAGE->navigation->add(
     get_string('home'),
     new moodle_url('/index.php'),
@@ -44,13 +46,13 @@ $thingnode = $previewnode->add(
    $url
 );
 $thingnode->make_active();
-/** BREADCUMBS END */
+//BREADCUMBS END
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
-/** This avoid the site-administration menu to be rendered  */
+//This avoids the site-administration menu to be rendered
 $PAGE->set_secondary_navigation(false);
 
 $output = $PAGE->get_renderer('tool_grischeras');
