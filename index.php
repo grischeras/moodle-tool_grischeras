@@ -35,7 +35,7 @@ $pagetitle = $title;
 
 $url = new moodle_url('/admin/tool/grischeras/index.php');
 
-// BREADCUMBS
+// BREADCUMBS.
 $previewnode = $PAGE->navigation->add(
     get_string('home'),
     new moodle_url('/index.php'),
@@ -46,13 +46,13 @@ $thingnode = $previewnode->add(
    $url
 );
 $thingnode->make_active();
-// BREADCUMBS END
+// BREADCUMBS END.
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
-// This avoids the site-administration menu to be rendered
+// This avoids the site-administration menu to be rendered.
 $PAGE->set_secondary_navigation(false);
 
 $output = $PAGE->get_renderer('tool_grischeras');
