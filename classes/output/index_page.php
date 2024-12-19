@@ -14,13 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- *
- * @package    tool_grischeras
- * @copyright  2024 Alberto Sempreboni
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 declare(strict_types = 1);
 
 namespace tool_grischeras\output;
@@ -37,6 +30,9 @@ class index_page implements renderable, templatable {
     /** @var string $sometext Some text to show how to pass data to a template. */
     private $sometext = null;
 
+    /**
+     * @param $sometext
+     */
     public function __construct($sometext) {
         $this->sometext = $sometext;
     }

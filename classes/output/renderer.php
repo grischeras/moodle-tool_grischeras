@@ -25,6 +25,9 @@ namespace tool_grischeras\output;
 
 use plugin_renderer_base;
 
+/**
+ * The class to fill data to send to index page
+ */
 class renderer extends plugin_renderer_base {
     /**
      * Defer to template.
