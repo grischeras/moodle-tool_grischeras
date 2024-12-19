@@ -24,9 +24,11 @@ use templatable;
 use stdClass;
 
 /**
+ * @package    tool_grischeras
  * The class to render plugin's index page
  */
 class index_page implements renderable, templatable {
+
     /** @var string|null
      * $sometext Some text to show how to pass data to a template.
      */
