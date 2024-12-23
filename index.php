@@ -34,7 +34,6 @@ $pagetitle = $title;
 $courseid = required_param('id', PARAM_INT);
 $url = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
 
-// $PAGE->set_context(context_course::instance($courseid));
 $PAGE->set_context(context_system::instance());
 
 $PAGE->set_url($url);
@@ -59,7 +58,7 @@ $thingnode->make_active();
 $PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
 // This avoids the site-administration menu to be rendered.
-// $PAGE->set_secondary_navigation(false);
+$PAGE->set_secondary_navigation(false);
 $PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
 $output = $PAGE->get_renderer('tool_grischeras');
