@@ -30,7 +30,7 @@ function tool_grischeras_extend_navigation_course($navigation) {
     if (has_capability('tool/grischeras:view', $context)) {
         $navigation->add(
             get_string('pluginname', 'tool_grischeras'),
-            new moodle_url('/admin/tool/grischeras/index.php?', array('id' => $courseid)),
+            new moodle_url('/admin/tool/grischeras/index.php?', ['id' => $courseid]),
             navigation_node::TYPE_SETTING,
             get_string('pluginname', 'tool_grischeras'),
             'grischeras'

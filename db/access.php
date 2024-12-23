@@ -15,12 +15,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-/**
- * @package   tool_grischeras
- * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
-
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
@@ -31,7 +25,7 @@ $capabilities = [
             'editingteacher' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
             'student' => CAP_ALLOW,
-        ]
+        ],
     ],
     'tool/grischeras:edit' => [
         'riskbitmask' => RISK_XSS,
@@ -41,6 +35,6 @@ $capabilities = [
             'editingteacher' => CAP_ALLOW,
             'teacher' => CAP_ALLOW,
         ],
-        'noclean' => true
+        'noclean' => true,
     ],
 ];
