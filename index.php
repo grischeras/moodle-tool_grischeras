@@ -40,7 +40,7 @@ $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 $course = get_course($courseid);
-$PAGE->set_course($course);// sets up global $COURSE
+$PAGE->set_course($course);// Sets up global $COURSE.
 
 // BREADCUMBS.
 $previewnode = $PAGE->navigation->add(
