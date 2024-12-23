@@ -33,10 +33,14 @@ $pagetitle = $title;
 $courseid = required_param('id', PARAM_INT);
 $url = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
 
-$PAGE->set_context(context_course::instance($courseid));
+//$PAGE->set_context(context_course::instance($courseid));
+$PAGE->set_context(context_system::instance());
+
 $PAGE->set_url($url);
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
+$course = get_course($courseid);
+$PAGE->set_course($course);// sets up global $COURSE
 
 // BREADCUMBS.
 $previewnode = $PAGE->navigation->add(
@@ -46,25 +50,19 @@ $previewnode = $PAGE->navigation->add(
 );
 $thingnode = $previewnode->add(
     $title,
-   $url
+    $url
 );
 $thingnode->make_active();
 // BREADCUMBS END.
 
-// EXTENDING COURSE NAVIGATION.
-$coursenode = $PAGE->navigation->find($courseid, navigation_node::TYPE_COURSE);
-$thingnode = $coursenode->add(
-    $title,
-    $url
-);
-$thingnode->make_active();
-// EXTENDING COURSE NAVIGATION END.
+$PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
 // This avoids the site-administration menu to be rendered.
-$PAGE->set_secondary_navigation(false);
+//$PAGE->set_secondary_navigation(false);
+$PAGE->navbar->add(get_string('home'), new moodle_url($url));
 
 $output = $PAGE->get_renderer('tool_grischeras');
-$renderable = new \tool_grischeras\output\index_page('Some demo infos');
+$renderable = new \tool_grischeras\output\index_page('Some demo infos', $course);
 
 echo $output->header();
 echo $output->render($renderable);

@@ -15,19 +15,25 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version metadata for the plugintype_pluginname plugin.
- *
  * @package   tool_grischeras
  * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$plugin->version = 2024121601;
-$plugin->requires = 2023103000;
-$plugin->supported = [400, 500];
-$plugin->component = 'tool_grischeras';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.1';
+function tool_grischeras_extend_navigation_course($navigation) {
+    global $PAGE;
+    $courseid = $PAGE->course->id;
 
+    $context = context_course::instance($courseid);
+    if (has_capability('tool/grischeras:view', $context)) {
+        $navigation->add(
+            get_string('pluginname', 'tool_grischeras'),
+            new moodle_url('/admin/tool/grischeras/index.php?', array('id' => $courseid)),
+            navigation_node::TYPE_SETTING,
+            get_string('pluginname', 'tool_grischeras'),
+            'grischeras'
+        );
+    }
+}

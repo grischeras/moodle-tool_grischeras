@@ -25,6 +25,7 @@ declare(strict_types = 1);
 
 namespace tool_grischeras\output;
 
+use dml_exception;
 use renderable;
 use renderer_base;
 use templatable;
@@ -36,33 +37,71 @@ use stdClass;
  */
 class index_page implements renderable, templatable {
 
-    /** @var string|null
+    /** @var string
      * $sometext Some text to show how to pass data to a template.
      */
-    private ?string $sometext = null;
-
+    private string $sometext;
     /**
-     * short description of constructor
-     * @param string $sometext
+     * @var stdClass
+     * $course instance
      */
-    public function __construct(string $sometext) {
+    private stdClass $course;
+
+    public function __construct(string $sometext, stdClass $course) {
         $this->sometext = $sometext;
+        $this->course = $course;
     }
 
     /**
-     * a short description for this method
+     *  a short description for this method
      * @param renderer_base $output
      * @return stdClass
+     * @throws dml_exception
      */
     public function export_for_template(renderer_base $output): stdClass {
         $data = new stdClass();
         $data->sometext = $this->sometext;
-        $data->infos = [
-            ['key' => 'information', 'value' => 'string 1'],
-            ['key' => 'another info', 'value' => 'string 2'],
-            ['key' => 'additional example for mustache', 'value' => 'string 3'],
-        ];
+        $data->courseinfos = $this->get_course_infos();
 
         return $data;
+    }
+
+    /**
+     * building data array
+     * @return array
+     * @throws dml_exception
+     */
+    private function get_course_infos(): array {
+        return [
+            'coursename' => $this->course->fullname,
+            'isended' => ($this->course->enddate < time()),
+            'students' => $this->get_course_participants('student'),
+            'teachers' => $this->get_course_participants('teacher'),
+        ];
+    }
+
+    /**
+     * querying students enrolled in a course
+     * @param string $archetype
+     * @return int
+     * @throws dml_exception
+     */
+    private function get_course_participants(string $archetype): int {
+        global $DB;
+
+        $sql = '
+                SELECT COUNT({user_enrolments}.id) 
+                FROM {user_enrolments} 
+                INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid 
+                INNER JOIN {role} ON {role}.id = {enrol}.roleid 
+                WHERE {enrol}.courseid =  :courseid
+                AND {role}.archetype = :archetype
+                ';
+        $params = [
+            'courseid' => $this->course->id,
+            'archetype' => $archetype,
+        ];
+
+        return $DB->count_records_sql($sql, $params);
     }
 }
