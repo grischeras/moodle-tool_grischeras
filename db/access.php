@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -17,6 +16,7 @@
 
 /**
  * defining access rules
+ *
  * @package   tool_grischeras
  * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

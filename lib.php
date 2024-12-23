@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * this file adds a new menu voice for the course settings menu
+ *
  * @package   tool_grischeras
  * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
