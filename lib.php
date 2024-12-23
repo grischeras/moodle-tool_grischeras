@@ -15,6 +15,8 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * Library functions. Only used for course-menu callback at this point.
+ *
  * @package   tool_grischeras
  * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,6 +26,7 @@ defined('MOODLE_INTERNAL') || die;
 
 /**
  * this function adds another voice to the course management menu
+ *
  * @param navigation_node $navigation
  * @return void
  * @throws \core\exception\moodle_exception

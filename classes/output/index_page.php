@@ -47,6 +47,10 @@ class index_page implements renderable, templatable {
      */
     private stdClass $course;
 
+    /**
+     * @param string $sometext
+     * @param stdClass $course
+     */
     public function __construct(string $sometext, stdClass $course) {
         $this->sometext = $sometext;
         $this->course = $course;
@@ -88,9 +92,7 @@ class index_page implements renderable, templatable {
      */
     private function get_course_participants(string $archetype): int {
         global $DB;
-
-        $sql = '
-                SELECT COUNT({user_enrolments}.id) 
+        $sql = 'SELECT COUNT({user_enrolments}.id) 
                 FROM {user_enrolments} 
                 INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid 
                 INNER JOIN {role} ON {role}.id = {enrol}.roleid 
