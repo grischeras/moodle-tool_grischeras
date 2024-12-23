@@ -22,6 +22,13 @@
 
 defined('MOODLE_INTERNAL') || die;
 
+/**
+ * this function adds another voice to the course management menu
+ * @param $navigation
+ * @return void
+ * @throws \core\exception\moodle_exception
+ * @throws coding_exception
+ */
 function tool_grischeras_extend_navigation_course($navigation) {
     global $PAGE;
     $courseid = $PAGE->course->id;
