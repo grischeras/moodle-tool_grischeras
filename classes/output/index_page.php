@@ -95,9 +95,9 @@ class index_page implements renderable, templatable {
     private function get_course_participants(string $archetype): int {
         global $DB;
         $sql = 'SELECT COUNT({user_enrolments}.id) FROM {user_enrolments}';
-        $sql .=' INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid';
-        $sql .=' INNER JOIN {role} ON {role}.id = {enrol}.roleid';
-        $sql .=' WHERE {enrol}.courseid =  :courseid';
+        $sql .= ' INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid';
+        $sql .= ' INNER JOIN {role} ON {role}.id = {enrol}.roleid';
+        $sql .= ' WHERE {enrol}.courseid =  :courseid';
         $sql .= 'AND {role}.archetype = :archetype';
         $params = [
             'courseid' => $this->course->id,
