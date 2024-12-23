@@ -48,6 +48,8 @@ class index_page implements renderable, templatable {
     private stdClass $course;
 
     /**
+     * description of the construct method
+     *
      * @param string $sometext
      * @param stdClass $course
      */
@@ -92,13 +94,11 @@ class index_page implements renderable, templatable {
      */
     private function get_course_participants(string $archetype): int {
         global $DB;
-        $sql = 'SELECT COUNT({user_enrolments}.id) 
-                FROM {user_enrolments} 
-                INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid 
-                INNER JOIN {role} ON {role}.id = {enrol}.roleid 
-                WHERE {enrol}.courseid =  :courseid
-                AND {role}.archetype = :archetype
-                ';
+        $sql = 'SELECT COUNT({user_enrolments}.id) FROM {user_enrolments}';
+        $sql .=' INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid';
+        $sql .=' INNER JOIN {role} ON {role}.id = {enrol}.roleid';
+        $sql .=' WHERE {enrol}.courseid =  :courseid';
+        $sql .= 'AND {role}.archetype = :archetype';
         $params = [
             'courseid' => $this->course->id,
             'archetype' => $archetype,
