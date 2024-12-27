@@ -29,5 +29,5 @@ $plugin->requires = 2023103000;
 $plugin->supported = [400, 500];
 $plugin->component = 'tool_grischeras';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.1';
+$plugin->release = '1.2';
 
