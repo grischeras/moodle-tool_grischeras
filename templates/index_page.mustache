@@ -36,26 +36,46 @@
         "courseinfos":{
           "coursename": "string",
           "isended": "boolean",
-          "students": "integer",
-          "teachers": "integer"
+          "infos": {
+                "id": "integer",
+                "name": "string"
+            }
           }
     }
   }}
-
-<div class="hero-unit">
-  <h3>{{sometext}}</h3>
-    <p><strong>{{courseinfos.coursename}}:</strong>
-      {{#courseinfos.isended}}
-                    <span style="color: red">Course is ended!</span>
-      {{/courseinfos.isended}}
-        {{^courseinfos.isended}}
-          <span style="color: green">Course is in progress!</span>
-        {{/courseinfos.isended}}
-    </p>
-  <p>
-    <strong>Enrolled students:</strong> <span>{{courseinfos.students}}</span>
-  </p>
-  <p>
-    <strong>Course teachers:</strong> <span>{{courseinfos.teachers}}</span>
-  </p>
+<style>
+    .list-details{
+        border: 2px solid green;
+        padding: 5px;
+        margin: 2px;
+        float: left;
+        width: 33%;
+    }
+    .list-details > p {
+        text-align: center;
+        font-size: 16px;
+    }
+   .list-details > p > span{
+       text-transform: uppercase;
+       font-weight: bold;
+    }
+</style>
+<div class="container-fluid">
+    <div class="info-box">
+        <h3>{{sometext}}</h3>
+        <p><strong>{{courseinfos.coursename}}:</strong>
+            {{#courseinfos.isended}}
+                <span style="color: red">Course is ended!</span>
+            {{/courseinfos.isended}}
+            {{^courseinfos.isended}}
+                <span style="color: green">Course is in progress!</span>
+            {{/courseinfos.isended}}
+        </p>
+    </div>
+    {{#courseinfos.infos}}
+        <div class="list-details">
+            <p><span>record id:</span> {{ id }}</p>
+            <p><span>record name:</span> {{name}}</p>
+        </div>
+    {{/courseinfos.infos}}
 </div>

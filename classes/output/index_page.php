@@ -81,29 +81,38 @@ class index_page implements renderable, templatable {
         return [
             'coursename' => $this->course->fullname,
             'isended' => ($this->course->enddate < time()),
-            'students' => $this->get_course_participants('student'),
-            'teachers' => $this->get_course_participants('teacher'),
+            'infos' => $this->get_course_details(),
         ];
     }
 
     /**
      * querying students enrolled in a course
-     * @param string $archetype
-     * @return int
+     * @return mixed
      * @throws dml_exception
      */
-    private function get_course_participants(string $archetype): int {
+    private function get_course_details(): array {
+        $records = $this->get_tool_records();
+        $results = [];
+        foreach ($records as $record) {
+            $results[] = [
+                'id' => $record->id,
+                'name' => $record->name,
+            ];
+        }
+
+        return $results;
+    }
+
+    /**
+     * get tool_grischeras data from db
+     *
+     * @return mixed
+     */
+    private function get_tool_records(): mixed {
         global $DB;
-        $sql = 'SELECT COUNT({user_enrolments}.id) FROM {user_enrolments}';
-        $sql .= ' INNER JOIN {enrol} ON {enrol}.id = {user_enrolments}.enrolid';
-        $sql .= ' INNER JOIN {role} ON {role}.id = {enrol}.roleid';
-        $sql .= ' WHERE {enrol}.courseid =  :courseid';
-        $sql .= 'AND {role}.archetype = :archetype';
         $params = [
             'courseid' => $this->course->id,
-            'archetype' => $archetype,
         ];
-
-        return $DB->count_records_sql($sql, $params);
+        return $DB->get_records('tool_grischeras', $params);
     }
 }
