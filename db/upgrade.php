@@ -21,13 +21,15 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
  * adjusting needed databsase if the version is < than the expected
  *
  * @param $oldversion
  * @return bool
  */
-function xmldb_tool_grischeras_upgrade($oldversion): bool {
+function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
     global $DB;
 
     // Load the DDL manager and xmldb API.
