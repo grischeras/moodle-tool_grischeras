@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * adjusting needed databsase if the version is < than the expected
  *
- * @param $oldversion
+ * @param int $oldversion
  * @return bool
  */
 function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
@@ -34,6 +34,7 @@ function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
 
     // Load the DDL manager and xmldb API.
     $dbman = $DB->get_manager();
+
     if ($oldversion < '2024122700') {
         $table = new xmldb_table('tool_grischeras');
 
@@ -52,15 +53,16 @@ function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
 
         // Adding indexes to table.
         $table->add_index('courseidname', XMLDB_INDEX_UNIQUE, ['name', 'courseid']);
+
+        // Conditionally launch create table.
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        // Savepoint reached.
+        upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
     }
 
-    // Conditionally launch create table.
-    if (!$dbman->table_exists($table)) {
-        $dbman->create_table($table);
-    }
-
-    // Savepoint reached.
-    upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
 
     return true;
 }

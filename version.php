@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2024121601;
+$plugin->version = 2024122700;
 $plugin->requires = 2023103000;
 $plugin->supported = [400, 500];
 $plugin->component = 'tool_grischeras';
