@@ -63,7 +63,7 @@ function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
         upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
     }
 
-
     return true;
 }
+
 
