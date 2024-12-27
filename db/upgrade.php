@@ -21,7 +21,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 /**
  * adjusting needed databsase if the version is < than the expected
  *
@@ -51,15 +50,15 @@ function xmldb_tool_grischeras_upgrade($oldversion): bool {
 
         // Adding indexes to table.
         $table->add_index('courseidname', XMLDB_INDEX_UNIQUE, ['name', 'courseid']);
-
-        // Conditionally launch create table.
-        if (!$dbman->table_exists($table)) {
-            $dbman->create_table($table);
-        }
-
-        // savepoint reached.
-        upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
     }
+
+    // Conditionally launch create table.
+    if (!$dbman->table_exists($table)) {
+        $dbman->create_table($table);
+    }
+
+    // Savepoint reached.
+    upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
 
     return true;
 }
