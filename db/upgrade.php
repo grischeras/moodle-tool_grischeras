@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * a short description about upgrade.php]
+ * a short description about upgrade.php
  * @package    tool_grischeras
  * @copyright  2024 Alberto Sempreboni
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -55,9 +55,9 @@ function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
         $table->add_index('courseidname', XMLDB_INDEX_UNIQUE, ['name', 'courseid']);
 
         // Conditionally launch create table.
-        if (!$dbman->table_exists($table)) {
+        /*if (!$dbman->table_exists($table)) {
             $dbman->create_table($table);
-        }
+        }*/
 
         // Savepoint reached.
         upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
