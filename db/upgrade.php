@@ -33,29 +33,6 @@ function xmldb_tool_grischeras_upgrade(int $oldversion): bool {
     // Load the DDL manager and xmldb API.
     $dbman = $DB->get_manager();
 
-    if ($oldversion < '2024122700') {
-        $table = new xmldb_table('tool_grischeras');
-
-        // Adding fields to table.
-        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
-        $table->add_field('courseid', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
-        $table->add_field('name', XMLDB_TYPE_CHAR, '255', null, null, null, null);
-        $table->add_field('completed', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '0');
-        $table->add_field('priority', XMLDB_TYPE_INTEGER, '1', null, XMLDB_NOTNULL, null, '1');
-        $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
-        $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
-
-        // Adding keys to table.
-        $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
-        $table->add_key('courseid', XMLDB_KEY_FOREIGN, ['courseid'], 'course', ['id']);
-
-        // Adding indexes to table.
-        $table->add_index('courseidname', XMLDB_INDEX_UNIQUE, ['name', 'courseid']);
-
-        // Savepoint reached.
-        upgrade_plugin_savepoint(true, 2024122700, 'tool', 'grischeras');
-    }
-
     return true;
 }
 
