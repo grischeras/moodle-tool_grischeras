@@ -57,9 +57,13 @@
         </p>
     </div>
     {{#courseinfos.infos}}
-        <div class="list-details">
-            <p><span>record id:</span> {{ id }}</p>
-            <p><span>record name:</span> {{name}}</p>
+        <div class="objects-container">
+            {{# .}}
+                <div class="list-details">
+                    <p><span>record key:</span> {{ key }}</p>
+                    <p><span>record value:</span> {{value}}</p>
+                </div>
+            {{/.}}
         </div>
     {{/courseinfos.infos}}
 </div>

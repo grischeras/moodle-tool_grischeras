@@ -94,10 +94,8 @@ class index_page implements renderable, templatable {
         $records = $this->get_tool_records();
         $results = [];
         foreach ($records as $record) {
-            $results[] = [
-                'id' => $record->id,
-                'name' => $record->name,
-            ];
+            $keyvalues = $this->getkeyvalueresult($record);
+            $results[] = $keyvalues;
         }
 
         return $results;
@@ -107,6 +105,7 @@ class index_page implements renderable, templatable {
      * get tool_grischeras data from db
      *
      * @return mixed
+     * @throws dml_exception
      */
     private function get_tool_records(): mixed {
         global $DB;
@@ -114,5 +113,24 @@ class index_page implements renderable, templatable {
             'courseid' => $this->course->id,
         ];
         return $DB->get_records('tool_grischeras', $params);
+    }
+
+    /**
+     * creating key value tuples
+     *
+     * @param stdClass $record
+     * @return array
+     */
+    private function getkeyvalueresult(stdClass $record): array
+    {
+        $result = [];
+        foreach ($record as $key => $value) {
+            $result[] = [
+                'key' => $key,
+                'value' => $value,
+            ];
+        }
+
+        return $result;
     }
 }
