@@ -121,8 +121,7 @@ class index_page implements renderable, templatable {
      * @param stdClass $record
      * @return array
      */
-    private function getkeyvalueresult(stdClass $record): array
-    {
+    private function getkeyvalueresult(stdClass $record): array {
         $result = [];
         foreach ($record as $key => $value) {
             $result[] = [
