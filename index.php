@@ -27,14 +27,15 @@ use tool_grischeras\output\index_page;
 require_once(__DIR__ . '/../../../config.php');
 
 require_login(null, false);
-
 // Set up the page.
 $title = get_string('pluginname', 'tool_grischeras');
 $pagetitle = $title;
 $courseid = required_param('id', PARAM_INT);
+$context = context_course::instance($courseid);
+require_capability('tool_grischeras:edit', $context);
 $url = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
 
-$PAGE->set_context(context_system::instance());
+$PAGE->set_context($context);
 
 $PAGE->set_url($url);
 $PAGE->set_title($title);
