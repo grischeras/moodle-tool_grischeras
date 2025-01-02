@@ -38,6 +38,7 @@ class renderer extends plugin_renderer_base {
      */
     public function render_index_page($page): string {
         $data = $page->export_for_template($this);
+
         return parent::render_from_template('tool_grischeras/index_page', $data);
     }
 }

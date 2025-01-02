@@ -21,3 +21,11 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+.item-actions {
+    clear: both;
+    margin: 10px 2px 10px 2px;
+}
+
+.item-actions > a {
+    margin: 5px;
+}
