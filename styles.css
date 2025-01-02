@@ -3,6 +3,7 @@
     margin: 10px;
     clear: both;
     border: 2px solid #f98012;
+    border-radius: 10px;
 }
 
 .list-details {
