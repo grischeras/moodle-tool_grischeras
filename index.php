@@ -32,7 +32,7 @@ $title = get_string('pluginname', 'tool_grischeras');
 $pagetitle = $title;
 $courseid = required_param('id', PARAM_INT);
 $context = context_course::instance($courseid);
-require_capability('tool_grischeras:edit', $context);
+require_capability('tool/grischeras:view', $context);
 $url = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
 
 $PAGE->set_context($context);
