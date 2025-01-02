@@ -21,6 +21,16 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-require_once(__DIR__ . '/../../../config.php');
+declare(strict_types = 1);
 
-echo 'FOOOO';die();
+namespace tool_grischeras\output;
+
+use core\output\renderable;
+use core\output\renderer_base;
+use core\output\templatable;
+
+class index_page implements renderable, templatable {
+    public function export_for_template(renderer_base $output) {
+        // TODO: Implement export_for_template() method.
+    }
+}
