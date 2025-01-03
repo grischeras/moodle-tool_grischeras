@@ -68,13 +68,7 @@ class edit_item_form extends moodleform {
 
     }
 
-    /**
-     * Function description.
-     *
-     * @param $data
-     * @param array $files
-     * @return array
-     */
+    // Perform some extra moodle validation
     public function validation($data, $files = []): array {
         $errors = [];
         if (empty($data['name'])) {
