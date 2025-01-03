@@ -63,8 +63,6 @@ class edit_item_form extends moodleform {
     }
 
     /**
-     * Custom validation should be added here.
-     *
      * @param $data
      * @param $files
      * @return array
