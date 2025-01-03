@@ -29,27 +29,68 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
-class edit_form extends moodleform {
+class edit_item_form extends moodleform {
     // Add elements to form.
     public function definition() {
         global $PAGE;
-
         // A reference to the form is stored in $this->form.
         // A common convention is to store it in a variable, such as `$mform`.
         $mform = $this->_form; // Don't forget the underscore!
-
+        $item = $this->get_item();
         // Add elements to your form.
-        $mform->addElement('text', 'email'  );
-
+        $mform->addElement('text', 'name', 'Name');
         // Set type of element.
-        $mform->setType('email', PARAM_NOTAGS);
-
+        $mform->setType('text', PARAM_TEXT);
         // Default value.
-        $mform->setDefault('email', 'Please enter email');
+        $mform->setDefault('name', $item->name);
+        // Add elements to your form.
+        $radioarray = [];
+        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('yes'), 1, 'completed');
+        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('no'), 0, 'completed');
+        $mform->addGroup($radioarray, 'radioar', 'Completed', array(' '), false);
+        // Default value.
+        $mform->setDefault('completed', $item->completed);
+
+        $select = $mform->addElement('select', 'priorities', 'Priority', $this->get_priorities());
+        $select->setSelected($item->priority);
+
+        $this->add_action_buttons();
+
     }
 
     // Custom validation should be added here.
-    function validation($data, $files) {
-        return [];
+    function validation($data, $files): array {
+        $errors = [];
+        if(empty($data['name'])) {
+            $errors['name'] = get_string('requiredname', 'tool_grischeras');
+        }
+        if($data['priorities'] < 1 || $data['priorities'] > 10) {
+            $errors['priorities'] = get_string('requiredpriorities', 'tool_grischeras');
+        }
+
+        return $errors;
+    }
+
+    /**
+     * @return object
+     */
+    private function get_item(): object {
+        global $DB;
+        $itemid = required_param('itemid', PARAM_INT);
+        $params = ['id' => $itemid];
+
+        return $DB->get_record('tool_grischeras', $params);
+    }
+
+    /**
+     * @return array
+     */
+    private function get_priorities(): array {
+        $result = [];
+        for($index = 1; $index <= 10; $index++) {
+            $result[$index] = $index;
+        }
+
+        return $result;
     }
 }
