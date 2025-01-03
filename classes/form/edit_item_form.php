@@ -30,7 +30,11 @@ global $CFG;
 require_once($CFG->libdir . '/formslib.php');
 
 class edit_item_form extends moodleform {
-    // Add elements to form.
+    /**
+     * Add elements to form.
+     * 
+     * @return void
+     */
     public function definition() {
         global $PAGE;
         // A reference to the form is stored in $this->form.
@@ -45,27 +49,33 @@ class edit_item_form extends moodleform {
         $mform->setDefault('name', $item->name);
         // Add elements to your form.
         $radioarray = [];
-        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('yes'), 1, 'completed');
-        $radioarray[] = $mform->createElement('radio', 'yesno', '', get_string('no'), 0, 'completed');
+        $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('yes'), 1, 'completed');
+        $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('no'), 0, 'completed');
         $mform->addGroup($radioarray, 'radioar', 'Completed', array(' '), false);
         // Default value.
         $mform->setDefault('completed', $item->completed);
 
-        $select = $mform->addElement('select', 'priorities', 'Priority', $this->get_priorities());
+        $select = $mform->addElement('select', 'priority', 'Priority', $this->get_priorities());
         $select->setSelected($item->priority);
 
         $this->add_action_buttons();
 
     }
 
-    // Custom validation should be added here.
+    /**
+     * Custom validation should be added here.
+     *
+     * @param $data
+     * @param $files
+     * @return array
+     */
     function validation($data, $files): array {
         $errors = [];
         if(empty($data['name'])) {
             $errors['name'] = get_string('requiredname', 'tool_grischeras');
         }
-        if($data['priorities'] < 1 || $data['priorities'] > 10) {
-            $errors['priorities'] = get_string('requiredpriorities', 'tool_grischeras');
+        if($data['priority'] < 1 || $data['priority'] > 10) {
+            $errors['priority'] = get_string('requiredpriority', 'tool_grischeras');
         }
 
         return $errors;
@@ -94,3 +104,4 @@ class edit_item_form extends moodleform {
         return $result;
     }
 }
+
