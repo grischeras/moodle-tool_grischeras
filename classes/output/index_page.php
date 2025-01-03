@@ -165,7 +165,6 @@ class index_page implements renderable, templatable {
             case 'edit':
                 $urledit = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
                 return $urledit->out(false);
-                break;
         }
     }
 }
