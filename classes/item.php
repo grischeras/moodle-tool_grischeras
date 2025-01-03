@@ -25,8 +25,14 @@
 namespace tool_grischeras;
 
 use tool_grischeras\database;
+
+/**
+ * Class description.
+ */
 class item extends database {
     /**
+     * Method description.
+     *
      * @param string $table
      */
     public function __construct(string $table) {
@@ -34,6 +40,8 @@ class item extends database {
     }
 
     /**
+     * Method description.
+     *
      * @param int $id
      * @return object
      */
@@ -44,6 +52,8 @@ class item extends database {
     }
 
     /**
+     * Method description.
+     *
      * @param int $id
      * @param \stdClass $data
      * @return object
@@ -59,6 +69,8 @@ class item extends database {
     }
 
     /**
+     * Method description.
+     *
      * @param int $id
      * @return bool
      */

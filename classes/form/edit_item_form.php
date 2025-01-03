@@ -68,10 +68,10 @@ class edit_item_form extends moodleform {
     // Function description.
     function validation($data, $files): array {
         $errors = [];
-        if(empty($data['name'])) {
+        if (empty($data['name'])) {
             $errors['name'] = get_string('requiredname', 'tool_grischeras');
         }
-        if($data['priority'] < 1 || $data['priority'] > 10) {
+        if ($data['priority'] < 1 || $data['priority'] > 10) {
             $errors['priority'] = get_string('requiredpriority', 'tool_grischeras');
         }
 
@@ -79,6 +79,8 @@ class edit_item_form extends moodleform {
     }
 
     /**
+     * Method description.
+     *
      * @return object
      */
     private function get_item(): object {
@@ -90,11 +92,13 @@ class edit_item_form extends moodleform {
     }
 
     /**
+     * Method description.
+     *
      * @return array
      */
     private function get_priorities(): array {
         $result = [];
-        for($index = 1; $index <= 10; $index++) {
+        for ($index = 1; $index <= 10; $index++) {
             $result[$index] = $index;
         }
 

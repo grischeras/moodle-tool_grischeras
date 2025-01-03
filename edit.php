@@ -43,13 +43,13 @@ $PAGE->set_secondary_navigation(false);
 $item = new item('tool_grischeras');
 // Instantiate the myform form from within the plugin.
 $editform = new \tool_grischeras\form\edit_item_form(new moodle_url('/admin/tool/grischeras/edit.php', ['itemid' => $itemid]), ['itemid' => $itemid]);
-if($editform->is_cancelled()) {
+if ($editform->is_cancelled()) {
     $item = $item->get_item($itemid);
-    redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
+    redirect(new moodle_url('/admin/tgit ool/grischeras', ['id' => $item->courseid]));
 }
 
 $data = $editform->get_data();
-if(!empty($data)) {
+if (!empty($data)) {
     $item = $item->update_item($itemid, $data);
     redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
 }

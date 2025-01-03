@@ -24,6 +24,9 @@
 
 namespace tool_grischeras;
 
+/**
+ * Class description.
+ */
 class database {
     /**
      * @var string
@@ -35,6 +38,8 @@ class database {
     protected object $item;
 
     /**
+     * Method description.
+     *
      * @return void
      */
     protected function save(): void {
@@ -48,6 +53,8 @@ class database {
     }
 
     /**
+     * Method description.
+     *
      * @param int $id
      */
     protected function get_one_by_id(int $id): void {
@@ -58,6 +65,8 @@ class database {
     }
 
     /**
+     * Method description.
+     *
      * @return bool
      */
     protected function delete(): bool {
