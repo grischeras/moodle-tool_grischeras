@@ -15,72 +15,49 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   tool_dravek
- * @copyright 2018, David <davidmc@moodle.com>
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * a short description of my plugin edit
+ *
+ * @package    tool_grischeras
+ * @copyright  2024 Alberto Sempreboni
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+use tool_grischeras\item;
 
 require_once(__DIR__ . '/../../../config.php');
 
-global $DB;
-
 // If id is passed we get courseid from record on database instead of courseid parameter.
-$id = optional_param('id', 0, PARAM_INT);
-if ($id) {
-    $record = tool_dravek_db::get($id);
-    $courseid = $record->courseid;
-} else {
-    $courseid = optional_param('courseid', 0, PARAM_INT);
-    $record = (object)['courseid' => $courseid, 'id' => ''];
-}
-
-require_login($courseid);
+$itemid = required_param('itemid', PARAM_INT);
+require_login(null, false);
 
 // Check if they have permission to VIEW.
-$context = context_course::instance($courseid);
-require_capability('tool/dravek:edit', $context);
+$context = context_system::instance();
+require_capability('tool/grischeras:edit', $context);
+$PAGE->set_context($context);
+$PAGE->set_title(get_string('edititem', 'tool_grischeras',$itemid));
+$PAGE->set_heading(get_string('edititem', 'tool_grischeras',$itemid));
+$PAGE->set_url(new moodle_url('/admin/tool/grischeras/edititem.php', ['itemid' => $itemid]));
+$PAGE->set_secondary_navigation(false);
 
-// Create URLs.
-$url = new moodle_url('/admin/tool/dravek/edit.php', array('courseid' => $courseid));
-$urlhome = new moodle_url('/admin/tool/dravek/index.php', ['id' => $courseid]);
 
-$PAGE->set_context(context_system::instance());
-$PAGE->set_url($url);
-$PAGE->set_pagelayout('report');
-$PAGE->set_title('Hello to the todo list');
-$PAGE->set_heading(get_string('pluginname', 'tool_dravek'));
-$PAGE->navbar->add(get_string('edit'), new moodle_url($url));
-
-$mform = new tool_dravek_toolform(null,  array('id' => $record->id));
-
-$textfieldoptions = array('trusttext' => true,
-                            'subdirs' => true,
-                            'maxfiles' => 50,
-                            'maxbytes' => 0,
-                            'context' => $context,
-                            'noclean' => 0,
-                            'enable_filemanagement' => true);
-if ($record->id) {
-    $context = context_course::instance($record->courseid);
-    file_prepare_standard_editor($record, 'description', $textfieldoptions, $context, 'tool_dravek', 'comments', $record->id);
-}
-$mform->set_data($record);
-
-// Process Form data.
-if ($mform->is_cancelled()) {
-    redirect($urlhome);
-} else if ($data = $mform->get_data()) {
-
-    if (!empty($data->id)) {
-        tool_dravek_db::update($data);
-    } else {
-        tool_dravek_db::insert($data);
-    }
-    redirect($urlhome);
+$item = new item('tool_grischeras');
+// Instantiate the myform form from within the plugin.
+$editform = new \tool_grischeras\form\edit_item_form(new moodle_url('/admin/tool/grischeras/edit.php', ['itemid' => $itemid]), ['itemid' => $itemid]);
+if($editform->is_cancelled()) {
+    $item = $item->get_item($itemid);
+    redirect(new moodle_url('/admin/tool/grischeras',['id' => $item->courseid]));
 }
 
-// Display.
-echo $OUTPUT->header();
-$mform->display();
-echo html_writer::link($urlhome, get_string('home', 'tool_dravek'));
-echo $OUTPUT->footer();
+$data = $editform->get_data();
+if(!empty($data)) {
+    $item = $item->update_item($itemid, $data);
+    redirect(new moodle_url('/admin/tool/grischeras',['id' => $item->courseid]));
+}
+
+$output = $PAGE->get_renderer('tool_grischeras');
+echo $output->header();
+$editform->display();
+echo $output->footer();
+
+
+
