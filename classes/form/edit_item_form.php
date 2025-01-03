@@ -71,7 +71,7 @@ class edit_item_form extends moodleform {
     // Perform some extra moodle validation.
     /**
      * @param $data
-     * @param $files
+     * @param array $files
      * @return array
      */
     public function validation($data, $files = []): array {
