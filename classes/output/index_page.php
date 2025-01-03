@@ -132,7 +132,7 @@ class index_page implements renderable, templatable {
 
         return [
            'data' => $result,
-            'actions' => $this->get_actions(['courseid' => $this->course->id, 'itemid' => $record->id])
+            'actions' => $this->get_item_actions(['itemid' => $record->id])
         ];
     }
 
@@ -140,7 +140,7 @@ class index_page implements renderable, templatable {
      * @param array $options
      * @return array
      */
-    private function get_actions(array $options): array {
+    private function get_item_actions(array $options): array {
         $actions = [];
         $context = \context_course::instance($this->course->id);
         if (has_capability('tool/grischeras:edit', $context)) {
