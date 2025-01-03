@@ -15,10 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
+ * A short description of the class.
+ *
  * @package    tool_grischeras
  * @copyright  2024 Alberto Sempreboni
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 namespace tool_grischeras\form;
 
 use moodleform;
@@ -66,7 +69,12 @@ class edit_item_form extends moodleform {
     }
 
     // Function description.
-    function validation($data, $files): array {
+    /**
+     * @param $data
+     * @param $files
+     * @return array
+     */
+    public function validation($data, $files): array {
         $errors = [];
         if (empty($data['name'])) {
             $errors['name'] = get_string('requiredname', 'tool_grischeras');
