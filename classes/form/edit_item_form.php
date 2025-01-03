@@ -15,22 +15,41 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * a short description about edit
  * @package    tool_grischeras
  * @copyright  2024 Alberto Sempreboni
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+namespace tool_grischeras\form;
 
-declare(strict_types = 1);
+use moodleform;
 
-namespace tool_grischeras\output;
+defined('MOODLE_INTERNAL') || die;
 
-use core\output\renderable;
-use core\output\renderer_base;
-use core\output\templatable;
+global $CFG;
 
-class index_page implements renderable, templatable {
-    public function export_for_template(renderer_base $output) {
-        // TODO: Implement export_for_template() method.
+require_once($CFG->libdir . '/formslib.php');
+
+class edit_form extends moodleform {
+    // Add elements to form.
+    public function definition() {
+        global $PAGE;
+
+        // A reference to the form is stored in $this->form.
+        // A common convention is to store it in a variable, such as `$mform`.
+        $mform = $this->_form; // Don't forget the underscore!
+
+        // Add elements to your form.
+        $mform->addElement('text', 'email'  );
+
+        // Set type of element.
+        $mform->setType('email', PARAM_NOTAGS);
+
+        // Default value.
+        $mform->setDefault('email', 'Please enter email');
+    }
+
+    // Custom validation should be added here.
+    function validation($data, $files) {
+        return [];
     }
 }
