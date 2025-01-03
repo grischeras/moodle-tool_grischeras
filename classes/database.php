@@ -63,6 +63,6 @@ class database {
     protected function delete(): bool {
         global $DB;
 
-        return $DB->delete_records($this->table,['id' => $this->item->id]);
+        return $DB->delete_records($this->table, ['id' => $this->item->id]);
     }
 }

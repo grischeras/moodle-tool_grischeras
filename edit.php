@@ -34,8 +34,8 @@ require_login(null, false);
 $context = context_system::instance();
 require_capability('tool/grischeras:edit', $context);
 $PAGE->set_context($context);
-$PAGE->set_title(get_string('edititem', 'tool_grischeras',$itemid));
-$PAGE->set_heading(get_string('edititem', 'tool_grischeras',$itemid));
+$PAGE->set_title(get_string('edititem', 'tool_grischeras', $itemid));
+$PAGE->set_heading(get_string('edititem', 'tool_grischeras', $itemid));
 $PAGE->set_url(new moodle_url('/admin/tool/grischeras/edititem.php', ['itemid' => $itemid]));
 $PAGE->set_secondary_navigation(false);
 
@@ -45,13 +45,13 @@ $item = new item('tool_grischeras');
 $editform = new \tool_grischeras\form\edit_item_form(new moodle_url('/admin/tool/grischeras/edit.php', ['itemid' => $itemid]), ['itemid' => $itemid]);
 if($editform->is_cancelled()) {
     $item = $item->get_item($itemid);
-    redirect(new moodle_url('/admin/tool/grischeras',['id' => $item->courseid]));
+    redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
 }
 
 $data = $editform->get_data();
 if(!empty($data)) {
     $item = $item->update_item($itemid, $data);
-    redirect(new moodle_url('/admin/tool/grischeras',['id' => $item->courseid]));
+    redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
 }
 
 $output = $PAGE->get_renderer('tool_grischeras');

@@ -137,6 +137,8 @@ class index_page implements renderable, templatable {
     }
 
     /**
+     * Method description.
+     *
      * @param array $options
      * @return array
      */
@@ -155,6 +157,8 @@ class index_page implements renderable, templatable {
     }
 
     /**
+     * Method description.
+     *
      * @param string $string
      * @param array $options
      * @return string

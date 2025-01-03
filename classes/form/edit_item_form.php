@@ -29,6 +29,9 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
+/**
+ * Form for editing.
+ */
 class edit_item_form extends moodleform {
     /**
      * Add elements to form.
