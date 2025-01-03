@@ -24,8 +24,10 @@
 
 
 $string['pluginname'] = 'My first Moodle plugin';
-$string['edititem'] = 'Editing quiz';
 $string['editingquiz_help'] = 'Help for editing quiz';
-$string['greeting'] = 'Dear {$a}';
+$string['edititem'] = 'You are editing id: {$a}';
 
 
+// Form validation error.
+$string['requiredname'] = 'You must enter a name';
+$string['requiredpriorities'] = 'Priority must a value between 1 and 10';
