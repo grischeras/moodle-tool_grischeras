@@ -132,7 +132,7 @@ class index_page implements renderable, templatable {
 
         return [
            'data' => $result,
-            'actions' => $this->get_actions(['id' => $record->id])
+            'actions' => $this->get_actions(['courseid' => $this->course->id, 'itemid' => $record->id])
         ];
     }
 
@@ -156,6 +156,7 @@ class index_page implements renderable, templatable {
 
     /**
      * @param string $string
+     * @param array $options
      * @return string
      */
     private function get_action_url(string $string, array $options = []): string {
