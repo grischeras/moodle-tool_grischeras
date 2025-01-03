@@ -32,7 +32,7 @@ require_once($CFG->libdir . '/formslib.php');
 class edit_item_form extends moodleform {
     /**
      * Add elements to form.
-     * 
+     *
      * @return void
      */
     public function definition() {
