@@ -63,6 +63,7 @@ class edit_item_form extends moodleform {
     }
 
     /**
+     * Function description.
      * @param $data
      * @param $files
      * @return array
