@@ -3,8 +3,7 @@
 namespace tool_grischeras;
 
 use tool_grischeras\database;
-class item extends database
-{
+class item extends database {
     /**
      * @param string $table
      */
@@ -40,7 +39,7 @@ class item extends database
      * @param int $id
      * @return bool
      */
-    public function delete_item(int $id):bool {
+    public function delete_item(int $id): bool {
         $this->get_item($id);
 
         return $this->delete();

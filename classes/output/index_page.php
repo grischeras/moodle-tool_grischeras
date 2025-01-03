@@ -112,7 +112,7 @@ class index_page implements renderable, templatable {
         $params = [
             'courseid' => $this->course->id,
         ];
-        return $DB->get_records('tool_grischeras', $params);
+        return $DB->get_records('tool_grischeras', $params, 'priority ASC');
     }
 
     /**
@@ -132,7 +132,7 @@ class index_page implements renderable, templatable {
 
         return [
            'data' => $result,
-            'actions' => $this->get_item_actions(['itemid' => $record->id])
+            'actions' => $this->get_item_actions(['itemid' => $record->id]),
         ];
     }
 

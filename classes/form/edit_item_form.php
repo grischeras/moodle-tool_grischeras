@@ -35,7 +35,7 @@ class edit_item_form extends moodleform {
      *
      * @return void
      */
-    public function definition() {
+    public function definition(): void {
         global $PAGE;
         // A reference to the form is stored in $this->form.
         // A common convention is to store it in a variable, such as `$mform`.
@@ -51,7 +51,7 @@ class edit_item_form extends moodleform {
         $radioarray = [];
         $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('yes'), 1, 'completed');
         $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('no'), 0, 'completed');
-        $mform->addGroup($radioarray, 'radioar', 'Completed', array(' '), false);
+        $mform->addGroup($radioarray, 'radioar', 'Completed', [' '], false);
         // Default value.
         $mform->setDefault('completed', $item->completed);
 

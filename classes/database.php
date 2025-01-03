@@ -24,8 +24,7 @@
 
 namespace tool_grischeras;
 
-class database
-{
+class database {
     /**
      * @var string
      */
@@ -38,7 +37,7 @@ class database
     /**
      * @return void
      */
-    protected function save():void {
+    protected function save(): void {
         global $DB;
         if ($this->item->id) {
             $DB->update_record($this->table, $this->item);
@@ -51,7 +50,7 @@ class database
     /**
      * @param int $id
      */
-    protected function get_one_by_id(int $id):void {
+    protected function get_one_by_id(int $id): void {
         global $DB;
         $params = ['id' => $id];
 
@@ -61,7 +60,7 @@ class database
     /**
      * @return bool
      */
-    protected function delete():bool {
+    protected function delete(): bool {
         global $DB;
 
         return $DB->delete_records($this->table,['id' => $this->item->id]);
