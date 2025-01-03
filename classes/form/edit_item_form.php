@@ -70,7 +70,6 @@ class edit_item_form extends moodleform {
 
     /**
      * Perform some extra moodle validation.
-     * 
      * @param array $data
      * @param array $files
      * @return array
