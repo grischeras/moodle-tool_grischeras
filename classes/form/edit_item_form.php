@@ -72,10 +72,10 @@ class edit_item_form extends moodleform {
      * Function description.
      *
      * @param $data
-     * @param $files
+     * @param array $files
      * @return array
      */
-    public function validation($data, $files): array {
+    public function validation($data, $files = []): array {
         $errors = [];
         if (empty($data['name'])) {
             $errors['name'] = get_string('requiredname', 'tool_grischeras');
