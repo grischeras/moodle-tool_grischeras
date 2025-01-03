@@ -58,13 +58,13 @@
     </div>
     {{#courseinfos.infos}}
         <div class="objects-container">
-            {{# .}}
+            {{#data}}
                 <div class="list-details">
                     <p><span>record key:</span> {{ key }}</p>
                     <p><span>record value:</span> {{value}}</p>
                 </div>
 
-            {{/.}}
+            {{/data}}
             <div class="item-actions">
                 {{#actions}}
                     <a href="{{url}}" class="btn {{class}}">

@@ -67,7 +67,7 @@ class index_page implements renderable, templatable {
     public function export_for_template(renderer_base $output): stdClass {
         $data = new stdClass();
         $data->sometext = $this->sometext;
-        $data->courseinfos = $this->get_course_infos();
+        $data->courseinfos = $this->get_course_details();
 
         return $data;
     }
@@ -77,11 +77,11 @@ class index_page implements renderable, templatable {
      * @return array
      * @throws dml_exception
      */
-    private function get_course_infos(): array {
+    private function get_course_details(): array {
         return [
             'coursename' => $this->course->fullname,
             'isended' => ($this->course->enddate < time()),
-            'infos' => $this->get_course_details(),
+            'infos' => $this->get_course_infos(),
         ];
     }
 
@@ -90,7 +90,7 @@ class index_page implements renderable, templatable {
      * @return mixed
      * @throws dml_exception
      */
-    private function get_course_details(): array {
+    private function get_course_infos(): array {
         $records = $this->get_tool_records();
         $results = [];
         foreach ($records as $record) {
@@ -130,6 +130,41 @@ class index_page implements renderable, templatable {
             ];
         }
 
-        return $result;
+        return [
+           'data' => $result,
+            'actions' => $this->get_actions(['id' => $record->id])
+        ];
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     */
+    private function get_actions(array $options): array {
+        $actions = [];
+        $context = \context_course::instance($this->course->id);
+        if (has_capability('tool/grischeras:edit', $context)) {
+            $actions[] = [
+                'type' => 'edit',
+                'class' => 'btn-primary',
+                'url' => $this->get_action_url('edit', $options),
+            ];
+        }
+
+        return $actions;
+    }
+
+    /**
+     * @param string $string
+     * @return string
+     */
+    private function get_action_url(string $string, array $options = []): string {
+
+        switch ($string) {
+            case 'edit':
+                $urledit = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
+                return $urledit->out(false);
+                break;
+        }
     }
 }
