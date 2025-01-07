@@ -45,6 +45,7 @@ class database {
     protected function save(): void {
         global $DB;
         if ($this->item->id) {
+            $this->item->timemodified = time();
             $DB->update_record($this->table, $this->item);
         } else {
             $id = $DB->insert_record($this->table, $this->item);
