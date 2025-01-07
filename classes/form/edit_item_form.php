@@ -82,7 +82,9 @@ class edit_item_form extends moodleform {
         if ($data['priority'] < 1 || $data['priority'] > 10) {
             $errors['priority'] = get_string('requiredpriority', 'tool_grischeras');
         }
-
+        if ($data['completed'] < 0 || $data['completed'] > 1) {
+            $errors['completed'] = get_string('requiredcompleted', 'tool_grischeras');
+        }
         return $errors;
     }
 

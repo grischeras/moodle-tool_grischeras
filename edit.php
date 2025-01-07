@@ -26,7 +26,7 @@ use tool_grischeras\item;
 
 require_once(__DIR__ . '/../../../config.php');
 
-// If id is passed we get courseid from record on database instead of courseid parameter.
+// If id is passed we get record id on database instead of courseid parameter.
 $itemid = required_param('itemid', PARAM_INT);
 require_login(null, false);
 
@@ -48,7 +48,7 @@ $editform = new \tool_grischeras\form\edit_item_form(
 );
 if ($editform->is_cancelled()) {
     $item = $item->get_item($itemid);
-    redirect(new moodle_url('/admin/tgit ool/grischeras', ['id' => $item->courseid]));
+    redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
 }
 
 $data = $editform->get_data();

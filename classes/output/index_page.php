@@ -152,6 +152,13 @@ class index_page implements renderable, templatable {
                 'url' => $this->get_action_url('edit', $options),
             ];
         }
+        if (has_capability('tool/grischeras:delete', $context)) {
+            $actions[] = [
+                'type' => 'delete',
+                'class' => 'btn-danger',
+                'url' => $this->get_action_url('delete', $options),
+            ];
+        }
 
         return $actions;
     }
@@ -168,6 +175,9 @@ class index_page implements renderable, templatable {
         switch ($string) {
             case 'edit':
                 $urledit = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
+                return $urledit->out(false);
+            case 'delete':
+                $urledit = new \moodle_url('/admin/tool/grischeras/delete.php', $options);
                 return $urledit->out(false);
         }
     }
