@@ -44,4 +44,11 @@ $capabilities = [
         ],
         'noclean' => true,
     ],
+    'tool/grischeras:delete' => [
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_SYSTEM,
+        'archetypes' => [
+            'manager' => CAP_ALLOW,
+        ],
+    ],
 ];
