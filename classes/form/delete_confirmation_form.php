@@ -32,10 +32,15 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
+/**
+ * Form for deleting.
+ */
 class delete_confirmation_form extends moodleform {
 
     /**
-     * @inheritDoc
+     * Add elements to form.
+     *
+     * @return void
      */
     protected function definition() {
         global $PAGE;
