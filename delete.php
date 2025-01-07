@@ -45,7 +45,7 @@ $deleteform = new \tool_grischeras\form\delete_confirmation_form(
     new moodle_url('/admin/tool/grischeras/delete.php', ['itemid' => $itemid]),
     ['itemid' => $itemid]
 );
-if($deleteform->is_submitted()) {
+if ($deleteform->is_submitted()) {
     global $DB;
     $DB->delete_records('tool_grischeras', ['id' => $itemid]);
     redirect($indexurl);

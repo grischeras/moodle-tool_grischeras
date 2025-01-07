@@ -32,20 +32,18 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
-class delete_confirmation_form extends moodleform
-{
+class delete_confirmation_form extends moodleform {
 
     /**
      * @inheritDoc
      */
-    protected function definition()
-    {
+    protected function definition() {
         global $PAGE;
         // A reference to the form is stored in $this->form.
         // A common convention is to store it in a variable, such as `$mform`.
         $mform = $this->_form; // Don't forget the underscore!
         $item = $this->get_item();
-        $mform->addElement('static', 'delete_confirmation','Delete Confirmation','');
+        $mform->addElement('static', 'delete_confirmation','Delete Confirmation');
         $this->add_action_buttons();
     }
 
