@@ -31,4 +31,26 @@ require_login(null, false);
 $context = context_system::instance();
 require_capability('tool/grischeras:delete', $context);
 $item = (new item('tool_grischeras'))->get_item($itemid);
-redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
+$indexurl = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $item->courseid]);
+$PAGE->set_context($context);
+$PAGE->set_title(get_string('edititem', 'tool_grischeras', $itemid));
+$PAGE->set_heading(get_string('edititem', 'tool_grischeras', $itemid));
+$PAGE->set_url(new moodle_url('/admin/tool/grischeras/deleteconfirmation.php', ['itemid' => $itemid]));
+$PAGE->set_secondary_navigation(false);
+
+
+$item = new item('tool_grischeras');
+// Instantiate the myform form from within the plugin.
+$deleteform = new \tool_grischeras\form\delete_confirmation_form(
+    new moodle_url('/admin/tool/grischeras/delete.php', ['itemid' => $itemid]),
+    ['itemid' => $itemid]
+);
+if($deleteform->is_submitted()) {
+    global $DB;
+    $DB->delete_records('tool_grischeras', ['id' => $itemid]);
+    redirect($indexurl);
+}
+$output = $PAGE->get_renderer('tool_grischeras');
+echo $output->header();
+$deleteform->display();
+echo $output->footer();
