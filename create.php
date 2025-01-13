@@ -35,7 +35,6 @@ require_capability('tool/grischeras:create', $context);
 $PAGE->set_context($context);
 $PAGE->set_title(get_string('create', 'tool_grischeras'));
 $PAGE->set_heading(get_string('create', 'tool_grischeras'));
-//$PAGE->set_url(new moodle_url('/admin/tool/grischeras/edititem.php', ['itemid' => $itemid]));
 $PAGE->set_secondary_navigation(false);
 
 

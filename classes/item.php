@@ -80,6 +80,12 @@ class item extends database {
         return $this->delete();
     }
 
+    /**
+     * Method description.
+     *
+     * @param \stdClass $data
+     * @return int
+     */
     public function insert_item(\stdClass $data): int {
         $this->item = $data;
         $this->save();

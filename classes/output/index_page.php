@@ -72,7 +72,7 @@ class index_page implements renderable, templatable {
         if (has_capability('tool/grischeras:create', $context)) {
             $buttontxt = get_string('create', 'tool_grischeras');
             $data->insertbutton = $buttontxt;
-            $data->insertactionurl = $this->get_action_url('create',['courseid' => $this->course->id]);
+            $data->insertactionurl = $this->get_action_url('create', ['courseid' => $this->course->id]);
         }
 
         return $data;

@@ -103,7 +103,7 @@ class edit_item_form extends moodleform {
             $params = ['id' => $itemid];
             $item = $DB->get_record('item', $params);
         } else {
-            $item =  new stdClass();
+            $item = new stdClass();
             $item->completed = 0;
             $item->priority = 1;
             $item->name = '';
