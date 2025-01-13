@@ -55,6 +55,11 @@
                 <span style="color: green">Course is in progress!</span>
             {{/courseinfos.isended}}
         </p>
+        <p>
+            {{#insertbutton}}
+                <a href="{{insertactionurl}}" class="btn btn-primary">{{insertbutton}}</a>
+            {{/insertbutton}}
+        </p>
     </div>
     {{#courseinfos.infos}}
         <div class="objects-container">

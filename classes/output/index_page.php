@@ -68,6 +68,12 @@ class index_page implements renderable, templatable {
         $data = new stdClass();
         $data->sometext = $this->sometext;
         $data->courseinfos = $this->get_course_details();
+        $context = \context_course::instance($this->course->id);
+        if (has_capability('tool/grischeras:create', $context)) {
+            $buttontxt = get_string('create', 'tool_grischeras');
+            $data->insertbutton = $buttontxt;
+            $data->insertactionurl = $this->get_action_url('create');
+        }
 
         return $data;
     }
@@ -80,6 +86,7 @@ class index_page implements renderable, templatable {
     private function get_course_details(): array {
         return [
             'coursename' => $this->course->fullname,
+            'coursename2' => $this->course->fullname,
             'isended' => ($this->course->enddate < time()),
             'infos' => $this->get_course_infos(),
         ];
@@ -174,11 +181,14 @@ class index_page implements renderable, templatable {
 
         switch ($string) {
             case 'edit':
-                $urledit = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
-                return $urledit->out(false);
+                $url = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
+                return $url->out(false);
             case 'delete':
-                $urledit = new \moodle_url('/admin/tool/grischeras/delete.php', $options);
-                return $urledit->out(false);
+                $url = new \moodle_url('/admin/tool/grischeras/delete.php', $options);
+                return $url->out(false);
+            case 'create':
+                $url = new \moodle_url('/admin/tool/grischeras/create.php', $options);
+                return $url->out(false);
         }
     }
 }

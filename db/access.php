@@ -51,4 +51,14 @@ $capabilities = [
             'manager' => CAP_ALLOW,
         ],
     ],
+    'tool/grischeras:create' => [
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
+            'editingteacher' => CAP_ALLOW,
+            'teacher' => CAP_ALLOW,
+        ],
+        'noclean' => true,
+    ],
 ];
