@@ -25,6 +25,7 @@
 namespace tool_grischeras\form;
 
 use moodleform;
+use stdClass;
 
 defined('MOODLE_INTERNAL') || die;
 
@@ -63,6 +64,7 @@ class edit_item_form extends moodleform {
 
         $select = $mform->addElement('select', 'priority', 'Priority', $this->get_priorities());
         $select->setSelected($item->priority);
+        $mform->addElement('hidden', 'courseid', $item->courseid);
 
         $this->add_action_buttons();
 
@@ -95,10 +97,20 @@ class edit_item_form extends moodleform {
      */
     private function get_item(): object {
         global $DB;
-        $itemid = required_param('itemid', PARAM_INT);
-        $params = ['id' => $itemid];
 
-        return $DB->get_record('tool_grischeras', $params);
+        $itemid = optional_param('itemid', null, PARAM_INT);
+        if ($itemid) {
+            $params = ['id' => $itemid];
+            $item = $DB->get_record('item', $params);
+        } else {
+            $item =  new stdClass();
+            $item->completed = 0;
+            $item->priority = 1;
+            $item->name = '';
+            $item->courseid = required_param('courseid', PARAM_INT);
+        }
+
+        return $item;
     }
 
     /**

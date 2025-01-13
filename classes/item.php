@@ -79,4 +79,11 @@ class item extends database {
 
         return $this->delete();
     }
+
+    public function insert_item(\stdClass $data): int {
+        $this->item = $data;
+        $this->save();
+
+        return $this->item->id;
+    }
 }
