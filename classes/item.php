@@ -88,6 +88,7 @@ class item extends database {
      */
     public function insert_item(\stdClass $data): int {
         $this->item = $data;
+        $this->item->id  = null;
         $this->save();
 
         return $this->item->id;

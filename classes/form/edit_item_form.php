@@ -44,27 +44,28 @@ class edit_item_form extends moodleform {
      */
     public function definition(): void {
         global $PAGE;
-        // A reference to the form is stored in $this->form.
-        // A common convention is to store it in a variable, such as `$mform`.
         $mform = $this->_form; // Don't forget the underscore!
         $item = $this->get_item();
+
         // Add elements to your form.
         $mform->addElement('text', 'name', 'Name');
-        // Set type of element.
-        $mform->setType('text', PARAM_TEXT);
-        // Default value.
+        $mform->setType('name', PARAM_TEXT); // Correct field name here.
         $mform->setDefault('name', $item->name);
-        // Add elements to your form.
+
+        // Add radio buttons for 'completed'.
         $radioarray = [];
         $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('yes'), 1, 'completed');
         $radioarray[] = $mform->createElement('radio', 'completed', '', get_string('no'), 0, 'completed');
         $mform->addGroup($radioarray, 'radioar', 'Completed', [' '], false);
-        // Default value.
         $mform->setDefault('completed', $item->completed);
 
+        // Add select dropdown for 'priority'.
         $select = $mform->addElement('select', 'priority', 'Priority', $this->get_priorities());
         $select->setSelected($item->priority);
+
+        // Add hidden element for 'courseid'.
         $mform->addElement('hidden', 'courseid', $item->courseid);
+        $mform->setType('courseid', PARAM_INT); // Make sure hidden elements also have their type set.
 
         $this->add_action_buttons();
 
