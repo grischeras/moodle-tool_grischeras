@@ -21,7 +21,7 @@ export const init = () => {
         let itemId = element.id;
         switch (requestedaction) {
          case 'delete':
-             event.preventDefault();
+            event.preventDefault();
             deleteAction(itemId);
             break;
         }
