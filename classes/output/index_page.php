@@ -157,13 +157,17 @@ class index_page implements renderable, templatable {
                 'type' => 'edit',
                 'class' => 'btn-primary',
                 'url' => $this->get_action_url('edit', $options),
+                'action' => 'edit',
+                'id' => $options['itemid'],
             ];
         }
         if (has_capability('tool/grischeras:delete', $context)) {
             $actions[] = [
                 'type' => 'delete',
                 'class' => 'btn-danger',
-                'url' => $this->get_action_url('delete', $options),
+                'url' => '',
+                'action' => 'delete',
+                'id' => $options['itemid'],
             ];
         }
 

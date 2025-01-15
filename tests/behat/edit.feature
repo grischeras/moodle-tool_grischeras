@@ -15,8 +15,9 @@ Feature: Creating, editing and deleting entries
       | user     | course | role           |
       | teacher  | cs1     | editingteacher |
 
-  Scenario: I must be able to edit a record
-    When I log in as "teacher"
+  Scenario: I must be able to create a record
+    When I log in as "admin"
     And I am on "Course1" course homepage
     And I navigate to "My first Moodle plugin" in current page administration
-    And I click on "New" "link" in the "region-main" "region"
+    When I follow "Insert new item"
+    And I logout

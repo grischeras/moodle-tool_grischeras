@@ -102,7 +102,7 @@ class edit_item_form extends moodleform {
         $itemid = optional_param('itemid', null, PARAM_INT);
         if ($itemid) {
             $params = ['id' => $itemid];
-            $item = $DB->get_record('item', $params);
+            $item = $DB->get_record('tool_grischeras', $params);
         } else {
             $item = new stdClass();
             $item->completed = 0;
