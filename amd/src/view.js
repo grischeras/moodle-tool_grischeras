@@ -6,7 +6,7 @@ const deleteAction = (itemId) => {
       if (confirmation == true) {
           Ajax.call([{
               methodname: 'tool_grischeras_delete_item',
-              args: {itemId: itemId}
+              args: {itemid: itemId}
           }])[0].done(() => {
             // Delete item container from html.
             element.parentNode.parentNode.remove();

@@ -41,21 +41,21 @@ class delete_item extends \core_external\external_api
      */
     public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'itemId' => new external_value(PARAM_INT, 'The id of the item to delete'),
+            'itemid' => new external_value(PARAM_INT, 'The id of the item to delete'),
         ]);
     }
 
     /**
      * Method description
      *
-     * @param int $itemId
+     * @param int $itemid
      * @return void
      */
-    public static function execute(int $itemId): void {
+    public static function execute(int $itemid): void {
         self::validate_context(context_system::instance());
-        self::validate_parameters(self::execute_parameters(), ['itemId' => $itemId]);
+        self::validate_parameters(self::execute_parameters(), ['itemid' => $itemid]);
         $item = new item('tool_grischeras');
-        $item->delete_item($itemId);
+        $item->delete_item($itemid);
     }
 
     /**
