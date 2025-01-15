@@ -1,17 +1,17 @@
 import Ajax from 'core/ajax';
+import * as notification from 'core/notification';
 
 const deleteAction = (itemId) => {
       let element = document.getElementById(itemId);
-    // Eslint-disable-next-line no-alert.
-    if (confirm('Are you sure you want delete this item? ' + itemId)) {
+      notification.confirm('Are you sure?', function () {
           Ajax.call([{
               methodname: 'tool_grischeras_delete_item',
               args: {itemid: itemId}
           }])[0].done(() => {
-            // Delete item container from html.
-            element.parentNode.parentNode.remove();
+              // Delete item container from html.
+              element.parentNode.parentNode.remove();
           });
-      }
+      });
 };
 
 export const init = () => {
