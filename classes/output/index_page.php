@@ -165,7 +165,7 @@ class index_page implements renderable, templatable {
             $actions[] = [
                 'type' => 'delete',
                 'class' => 'btn-danger',
-                'url' => '',
+                'url' => $this->get_action_url('delete', $options),
                 'action' => 'delete',
                 'id' => $options['itemid'],
             ];
@@ -188,8 +188,8 @@ class index_page implements renderable, templatable {
                 $url = new \moodle_url('/admin/tool/grischeras/edit.php', $options);
                 return $url->out(false);
             case 'delete':
-                $url = new \moodle_url('/admin/tool/grischeras/delete.php', $options);
-                return $url->out(false);
+                $url = '';
+                return $url;
             case 'create':
                 $url = new \moodle_url('/admin/tool/grischeras/create.php', $options);
                 return $url->out(false);

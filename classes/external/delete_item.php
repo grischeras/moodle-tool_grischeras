@@ -2,14 +2,15 @@
 
 namespace tool_grischeras\external;
 
-use coding_exception;
 use context_system;
-use external_api;
-use external_function_parameters;
-use external_value;
+use \core_external\external_function_parameters;
+use \core_external\external_value;
 use tool_grischeras\item;
 
-class delete_item extends external_api
+/**
+ * Class description.
+ */
+class delete_item extends \core_external\external_api
 {
     /**
      * Get the function parameters.
@@ -18,21 +19,21 @@ class delete_item extends external_api
      */
     public static function execute_parameters(): external_function_parameters {
         return new external_function_parameters([
-            'itemId' => new external_value(PARAM_INT, 'The id for the item to enter'),
+            'itemId' => new external_value(PARAM_INT, 'The id of the item to delete'),
         ]);
     }
 
     /**
-     * Method description.
+     * Method description
      *
-     * @param int $itemid
+     * @param int $itemId
+     * @return void
      */
-    public static function execute(int $itemid): void {
+    public static function execute(int $itemId): void {
         self::validate_context(context_system::instance());
-        $params = self::validate_parameters(self::execute_parameters(), ['itemId' => $itemid]);
+        self::validate_parameters(self::execute_parameters(), ['itemId' => $itemId]);
         $item = new item('tool_grischeras');
-        $item = $item->get_item($itemid);
-        $item->delete();
+        $item->delete_item($itemId);
     }
 
     /**
