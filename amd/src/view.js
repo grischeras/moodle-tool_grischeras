@@ -3,7 +3,7 @@ import * as notification from 'core/notification';
 
 const deleteAction = (itemId) => {
       let element = document.getElementById(itemId);
-      notification.confirm('Are you sure?', function () {
+      notification.confirm('Are you sure?', function() {
           Ajax.call([{
               methodname: 'tool_grischeras_delete_item',
               args: {itemid: itemId}
