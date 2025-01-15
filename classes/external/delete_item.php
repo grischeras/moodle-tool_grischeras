@@ -25,8 +25,8 @@
 namespace tool_grischeras\external;
 
 use context_system;
-use \core_external\external_function_parameters;
-use \core_external\external_value;
+use core_external\external_function_parameters;
+use core_external\external_value;
 use tool_grischeras\item;
 
 /**
