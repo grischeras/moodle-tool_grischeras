@@ -1,9 +1,9 @@
 import Ajax from 'core/ajax';
 
 const deleteAction = (itemId) => {
-      let confirmation = confirm('Are you sure you want delete this item? ' + itemId);
       let element = document.getElementById(itemId);
-      if (confirmation == true) {
+    // Eslint-disable-next-line no-alert.
+    if (confirm('Are you sure you want delete this item? ' + itemId)) {
           Ajax.call([{
               methodname: 'tool_grischeras_delete_item',
               args: {itemid: itemId}
