@@ -32,8 +32,7 @@ use tool_grischeras\item;
 /**
  * Class description.
  */
-class delete_item extends \core_external\external_api
-{
+class delete_item extends \core_external\external_api {
     /**
      * Get the function parameters.
      *
