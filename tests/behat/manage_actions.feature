@@ -1,4 +1,4 @@
-@tool @tool_grischeras @javascript
+@tool @tool_grischeras
 Feature: Creating, editing and deleting entries
   In order to manage entries
   As a teacher
@@ -14,7 +14,7 @@ Feature: Creating, editing and deleting entries
     And the following "course enrolments" exist:
       | user     | course | role           |
       | teacher  | cs1     | editingteacher |
-
+  @javascript
   Scenario: I must be able to edit a record
     When I log in as "admin"
     And I am on "Course1" course homepage
