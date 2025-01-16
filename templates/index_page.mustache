@@ -61,24 +61,36 @@
             {{/insertbutton}}
         </p>
     </div>
-    {{#courseinfos.infos}}
-        <div class="objects-container">
-            {{#data}}
-                <div class="list-details">
-                    <p><span>record key:</span> {{ key }}</p>
-                    <p><span>record value:</span> {{value}}</p>
-                </div>
 
-            {{/data}}
-            <div class="item-actions">
-                {{#actions}}
-                    <a href="{{url}}" class="btn {{class}}" data-action="{{action}}" id="{{id}}">
-                        {{type}}
-                    </a>
-                {{/actions}}
-            </div>
-        </div>
-    {{/courseinfos.infos}}
+    <table class="flexible table table-striped table-hover generaltable generalbox" id="tool_grischeras_list">
+        <thead>
+            <tr>
+                {{#headers}}
+                    <th class="header"><strong>{{ key }}</strong></th>
+                {{/headers}}
+            </tr>
+        </thead>
+        <tbody>
+            {{#courseinfos.infos}}
+                <tr>
+                    {{#data}}
+                        <td>
+                            <p>{{value}}</p>
+                        </td>
+                    {{/data}}
+                    <td>
+                        {{#actions}}
+                            <div>
+                                <a href="{{url}}" class="btn {{class}}" data-action="{{action}}" id="{{id}}">
+                                    {{type}}
+                                </a>
+                            </div>
+                        {{/actions}}
+                    </td>
+                </tr>
+            {{/courseinfos.infos}}
+        </tbody>
+    </table>
 </div>
 {{#js}}
     require(['tool_grischeras/view'], (module) => module.init());

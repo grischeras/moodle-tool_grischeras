@@ -74,7 +74,7 @@ class index_page implements renderable, templatable {
             $data->insertbutton = $buttontxt;
             $data->insertactionurl = $this->get_action_url('create', ['courseid' => $this->course->id]);
         }
-
+        $data->headers = $this->get_items_headers();
         return $data;
     }
 
@@ -129,16 +129,15 @@ class index_page implements renderable, templatable {
      * @return array
      */
     private function getkeyvalueresult(stdClass $record): array {
-        $result = [];
+        $results = [];
         foreach ($record as $key => $value) {
-            $result[] = [
-                'key' => $key,
+            $results[] = [
                 'value' => $value,
             ];
         }
 
         return [
-           'data' => $result,
+            'data' => $results,
             'actions' => $this->get_item_actions(['itemid' => $record->id]),
         ];
     }
@@ -194,5 +193,23 @@ class index_page implements renderable, templatable {
                 $url = new \moodle_url('/admin/tool/grischeras/create.php', $options);
                 return $url->out(false);
         }
+    }
+
+    private function get_items_headers(): array {
+        $headers = [];
+        $records = $this->get_tool_records();
+        foreach ($records as $record) {
+            foreach ($record as $key => $value) {
+                $headers[] = [
+                  'key' => $key,
+                ];
+            }
+            break;
+        }
+        $headers[] = [
+            'key' => 'actions'
+        ];
+
+        return $headers;
     }
 }
