@@ -33,9 +33,9 @@ class database {
      */
     protected string $table;
     /**
-     * @var object
+     * @var object|null
      */
-    protected object $item;
+    protected ?object $item;
 
     /**
      * Method description.
@@ -60,9 +60,13 @@ class database {
      */
     protected function get_one_by_id(int $id): void {
         global $DB;
+        $this->item = null;
         $params = ['id' => $id];
+        $record = $DB->get_record($this->table, $params);
+        if($record) {
+            $this->item = $record;
+        }
 
-        $this->item = $DB->get_record($this->table, $params);
     }
 
     /**

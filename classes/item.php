@@ -37,15 +37,16 @@ class item extends database {
      */
     public function __construct(string $table) {
         $this->table = $table;
+        $this->item = null;
     }
 
     /**
      * Method description.
      *
      * @param int $id
-     * @return object
+     * @return object|null
      */
-    public function get_item(int $id): object {
+    public function get_item(int $id) {
         $this->get_one_by_id($id);
 
         return  $this->item;
