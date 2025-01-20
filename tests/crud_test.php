@@ -30,7 +30,7 @@ use tool_grischeras\item;
 /**
  * Class description.
  */
-class crud_test extends advanced_testcase {
+final class crud_test extends advanced_testcase {
 
     /**
      * Test insertion of a new item.

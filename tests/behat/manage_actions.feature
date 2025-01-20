@@ -36,3 +36,4 @@ Feature: Creating, editing and deleting entries
       | name      | completed   | priority |
       | Foo 2     | 0           | 5        |
     And I log out
+    
