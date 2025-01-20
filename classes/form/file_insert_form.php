@@ -35,7 +35,9 @@ require_once($CFG->libdir . '/formslib.php');
 class file_insert_form extends moodleform {
 
     /**
-     * @inheritDoc
+     * Method description.
+     *
+     * @return void
      */
     protected function definition() {
         global $PAGE;

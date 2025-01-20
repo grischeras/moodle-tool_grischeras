@@ -21,7 +21,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace tool_grischeras\tests;
+namespace tool_grischeras;
 
 use advanced_testcase;
 use stdClass;

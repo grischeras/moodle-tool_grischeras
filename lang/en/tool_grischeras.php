@@ -27,8 +27,8 @@ $string['deleteconfirmation'] = 'Are you sure you want to delete item {a}?';
 $string['edititem'] = 'You are editing id: {$a}';
 $string['pluginname'] = 'My first Moodle plugin';
 // Form validation error.
+$string['requiredcompleted'] = 'You must enter a value for completed';
 $string['requiredname'] = 'You must enter a name';
 $string['requiredpriority'] = 'Priority must a value between 1 and 10';
-$string['requiredcompleted'] = 'You must enter a value for completed';
 
 
