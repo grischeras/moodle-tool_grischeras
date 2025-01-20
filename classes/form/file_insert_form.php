@@ -32,6 +32,9 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
+/**
+ * Class description.
+ */
 class file_insert_form extends moodleform {
 
     /**

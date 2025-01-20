@@ -29,6 +29,11 @@ use tool_grischeras\item;
 
 /**
  * Class description.
+ *
+ * @package tool_grischeras
+ * @group tool_grischeras
+ * @covers \tool_grischeras\tool_crud
+ * @category test
  */
 final class crud_test extends advanced_testcase {
 
