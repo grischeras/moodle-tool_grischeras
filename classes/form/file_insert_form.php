@@ -32,14 +32,12 @@ global $CFG;
 
 require_once($CFG->libdir . '/formslib.php');
 
-class file_insert_form extends moodleform
-{
+class file_insert_form extends moodleform {
 
     /**
      * @inheritDoc
      */
-    protected function definition()
-    {
+    protected function definition() {
         global $PAGE;
         $mform = $this->_form; // Don't forget the underscore!
         $mform->addElement(
