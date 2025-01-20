@@ -215,9 +215,6 @@ class index_page implements renderable, templatable {
             }
             break;
         }
-        $headers[] = [
-            'key' => 'actions',
-        ];
 
         return $headers;
     }
