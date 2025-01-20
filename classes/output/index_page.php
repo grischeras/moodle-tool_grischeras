@@ -73,6 +73,7 @@ class index_page implements renderable, templatable {
             $buttontxt = get_string('create', 'tool_grischeras');
             $data->insertbutton = $buttontxt;
             $data->insertactionurl = $this->get_action_url('create', ['courseid' => $this->course->id]);
+            $data->insertactionfromfile = $this->get_action_url('bulk', ['courseid' => $this->course->id]);
         }
         $data->headers = $this->get_items_headers();
         return $data;
@@ -192,9 +193,17 @@ class index_page implements renderable, templatable {
             case 'create':
                 $url = new \moodle_url('/admin/tool/grischeras/create.php', $options);
                 return $url->out(false);
+            case 'bulk':
+                $url = new \moodle_url('/admin/tool/grischeras/file_insert.php', $options);
+                return $url->out(false);
         }
     }
 
+    /**
+     * Method description
+     *
+     * @return array
+     */
     private function get_items_headers(): array {
         $headers = [];
         $records = $this->get_tool_records();

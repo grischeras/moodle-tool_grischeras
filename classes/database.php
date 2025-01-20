@@ -24,6 +24,8 @@
 
 namespace tool_grischeras;
 
+use stdClass;
+
 /**
  * Class description.
  */
@@ -78,5 +80,23 @@ class database {
         global $DB;
 
         return $DB->delete_records($this->table, ['id' => $this->item->id]);
+    }
+
+    /**
+     * Method description.
+     *
+     * @param stdClass $item
+     * @return bool
+     */
+    protected function get_one_by_name_courseid(stdClass $item): bool {
+        global $DB;
+        $this->item = null;
+        $params = ['name' => $item->name, 'courseid' => $item->courseid];
+        $record = $DB->get_record($this->table, $params);
+        if ($record) {
+            return true;
+        }
+
+        return false;
     }
 }
