@@ -65,7 +65,7 @@ class database {
         $this->item = null;
         $params = ['id' => $id];
         $record = $DB->get_record($this->table, $params);
-        if($record) {
+        if ($record) {
             $this->item = $record;
         }
 

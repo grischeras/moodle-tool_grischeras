@@ -25,7 +25,6 @@
 namespace tool_grischeras\form;
 
 use moodleform;
-use stdClass;
 
 defined('MOODLE_INTERNAL') || die;
 

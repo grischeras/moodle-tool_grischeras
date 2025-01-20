@@ -102,7 +102,7 @@ class item extends database {
      * @return false|int
      */
     public function insert_if_not_exists(\stdClass $newitem) {
-        if(!$this->get_one_by_name_courseid($newitem)) {
+        if (!$this->get_one_by_name_courseid($newitem)) {
             return $this->insert_item($newitem);
         }
         return false;

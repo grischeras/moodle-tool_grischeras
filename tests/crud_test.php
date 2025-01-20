@@ -27,12 +27,13 @@ use advanced_testcase;
 use stdClass;
 use tool_grischeras\item;
 
-//defined('MOODLE_INTERNAL') || die;
-
+/**
+ * Class description.
+ */
 class crud_test extends advanced_testcase {
 
     /**
-     * Test insertion of a new item
+     * Test insertion of a new item.
      */
     public function test_insert_item(): void {
         $this->resetAfterTest();
@@ -48,7 +49,7 @@ class crud_test extends advanced_testcase {
     }
 
     /**
-     * Test update of an inserted item
+     * Test update of an inserted item.
      */
     public function test_update_item(): void {
         $this->resetAfterTest();
@@ -67,7 +68,7 @@ class crud_test extends advanced_testcase {
         $this->assertEquals('test modified', $updatedobject->name);
     }
     /**
-     * Test deletion of an inserted item
+     * Test deletion of an inserted item.
      */
     public function test_delete_item(): void {
         $this->resetAfterTest();
