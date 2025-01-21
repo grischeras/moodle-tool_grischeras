@@ -29,6 +29,11 @@ namespace tool_grischeras\event;
  */
 class delete_item  extends \core\event\base {
 
+    /**
+     * Method description.
+     *
+     * @return void
+     */
     protected function init() {
         $this->data['objecttable'] = 'tool_grischeras';
         $this->data['crud'] = 'd';
