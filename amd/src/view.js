@@ -5,7 +5,7 @@ const deleteAction = (itemId) => {
       let element = document.getElementById(itemId);
       notification.confirm('Are you sure?', function() {
           Ajax.call([{
-              methodname: 'tool_grischeras_delete_item',
+              methodname: 'tool_grischeras_delete',
               args: {itemid: itemId}
           }])[0].done(() => {
               // Delete item container from html.

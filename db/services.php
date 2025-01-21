@@ -27,8 +27,8 @@ use tool_grischeras\external\delete_item;
 defined('MOODLE_INTERNAL') || die();
 
 $functions = [
-    'tool_grischeras_delete_item' => [
-        'classname' => delete_item::class,
+    'tool_grischeras_delete' => [
+        'classname' => delete::class,
         'description' => 'Delete the selected item.',
         'type' => 'write',
         'ajax' => true,

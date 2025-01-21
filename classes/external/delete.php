@@ -27,12 +27,13 @@ namespace tool_grischeras\external;
 use context_system;
 use core_external\external_function_parameters;
 use core_external\external_value;
+use tool_grischeras\event\delete_item;
 use tool_grischeras\item;
 
 /**
  * Class description.
  */
-class delete_item extends \core_external\external_api {
+class delete extends \core_external\external_api {
     /**
      * Get the function parameters.
      *
@@ -51,10 +52,14 @@ class delete_item extends \core_external\external_api {
      * @return void
      */
     public static function execute(int $itemid): void {
-        self::validate_context(context_system::instance());
-        self::validate_parameters(self::execute_parameters(), ['itemid' => $itemid]);
-        $item = new item('tool_grischeras');
-        $item->delete_item($itemid);
+//        self::validate_context(context_system::instance());
+//        self::validate_parameters(self::execute_parameters(), ['itemid' => $itemid]);
+//        $event = delete_item::create([
+//            'context' => context_system::instance(),
+//                'objectid' => $itemid,
+//        ]);
+//        $event->add_record_snapshot('tool_grischeras_delete_item', self::get_record($itemid));
+//        $event->trigger();
     }
 
     /**
@@ -62,5 +67,17 @@ class delete_item extends \core_external\external_api {
      */
     public static function execute_returns() {
         return null;
+    }
+
+    /**
+     * Method description
+     *
+     * @param int $itemid
+     * @return false|mixed|\stdClass
+     */
+    private static function get_record(int $itemid) {
+        global $DB;
+
+        return $DB->get_record('tool_grischeras', ['id' => $itemid]);
     }
 }
