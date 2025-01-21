@@ -38,7 +38,7 @@ class grischeras_observer {
      * @return void
      */
     public static function delete_item(delete_item $event) {
-      global $DB;
-      $DB->delete_records('tool_grischeras', ['id' => $event->objectid,]);
+          global $DB;
+          $DB->delete_records('tool_grischeras', ['id' => $event->objectid]);
     }
 }
