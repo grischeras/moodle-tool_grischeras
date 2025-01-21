@@ -26,6 +26,9 @@ namespace tool_grischeras;
 
 use tool_grischeras\event\delete_item;
 
+/**
+ * Class description.
+ */
 class grischeras_observer {
 
     /**
@@ -36,6 +39,6 @@ class grischeras_observer {
      */
     public static function delete_item(delete_item $event) {
       global $DB;
-      $DB->delete_records('tool_grischeras', array('id' => $event->objectid));
+      $DB->delete_records('tool_grischeras', ['id' => $event->objectid,]);
     }
 }
