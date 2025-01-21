@@ -22,7 +22,8 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use tool_grischeras\external\delete_item;
+
+use tool_grischeras\external\delete;
 
 defined('MOODLE_INTERNAL') || die();
 
