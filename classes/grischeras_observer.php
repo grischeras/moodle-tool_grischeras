@@ -22,9 +22,20 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$observers = [
-    [
-        'eventname'   => '\tool_grischeras\event\delete_item',
-        'callback'    => \tool_grischeras\grischeras_observer::class.'::delete_item',
-    ],
-];
+namespace tool_grischeras;
+
+use tool_grischeras\event\delete_item;
+
+class grischeras_observer {
+
+    /**
+     * Method description.
+     *
+     * @param delete_item $event
+     * @return void
+     */
+    public static function delete_item(delete_item $event) {
+      global $DB;
+      $DB->delete_records('tool_grischeras', array('id' => $event->objectid));
+    }
+}

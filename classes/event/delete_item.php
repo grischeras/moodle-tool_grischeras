@@ -22,9 +22,14 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$observers = [
-    [
-        'eventname'   => '\tool_grischeras\event\delete_item',
-        'callback'    => \tool_grischeras\grischeras_observer::class.'::delete_item',
-    ],
-];
+namespace tool_grischeras\event;
+
+class delete_item  extends \core\event\base
+{
+
+    protected function init() {
+        $this->data['objecttable'] = 'tool_grischeras';
+        $this->data['crud'] = 'd';
+        $this->data['edulevel'] = self::LEVEL_OTHER;
+    }
+}
