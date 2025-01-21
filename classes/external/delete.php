@@ -52,14 +52,14 @@ class delete extends \core_external\external_api {
      * @return void
      */
     public static function execute(int $itemid): void {
-//        self::validate_context(context_system::instance());
-//        self::validate_parameters(self::execute_parameters(), ['itemid' => $itemid]);
-//        $event = delete_item::create([
-//            'context' => context_system::instance(),
-//                'objectid' => $itemid,
-//        ]);
-//        $event->add_record_snapshot('tool_grischeras_delete_item', self::get_record($itemid));
-//        $event->trigger();
+        self::validate_context(context_system::instance());
+        self::validate_parameters(self::execute_parameters(), ['itemid' => $itemid]);
+        $event = delete_item::create([
+            'context' => context_system::instance(),
+                'objectid' => $itemid,
+        ]);
+        $event->add_record_snapshot('tool_grischeras_delete_item', self::get_record($itemid));
+        $event->trigger();
     }
 
     /**
