@@ -24,6 +24,8 @@
 
 namespace tool_grischeras\form;
 
+use context_course;
+use moodle_url;
 use moodleform;
 use stdClass;use tool_grischeras\item;
 
@@ -32,7 +34,7 @@ require_once(__DIR__ . '/../../../config.php');
 // If id is passed we get record id on database instead of courseid parameter.
 require_login(null, false);
 $courseid = required_param('courseid', PARAM_INT);
-$context = context_system::instance();
+$context = context_course::instance($courseid);
 require_capability('tool/grischeras:create', $context);
 $PAGE->set_context($context);
 $indexurl = new moodle_url('/admin/tool/grischeras/index.php', ['id' => $courseid]);
