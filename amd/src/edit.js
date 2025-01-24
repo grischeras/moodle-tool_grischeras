@@ -12,13 +12,13 @@ const editAction = (data) => {
 
 export const init = ({itemid}) => {
     let element = document.getElementById('id_save');
-    element.addEventListener('click',function () {
+    element.addEventListener('click', function() {
         let name = document.getElementById('id_name').value;
         let completed = document.getElementById('id_completed_1').checked;
         let priority = document.getElementById('id_priority').value;
         editAction({
             itemid: itemid,
-            name : name,
+            name: name,
             completed: completed,
             priority: priority
         });

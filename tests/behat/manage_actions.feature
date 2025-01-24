@@ -31,8 +31,9 @@ Feature: Creating, editing and deleting entries
     And I set the following fields to these values:
       | Name      | Foo 2   |
       | Priority  | 5     |
-    And I press "Save changes"
-    Then the following should exist in the "tool_grischeras_list" table:
+    And I press "Save"
+    Then I navigate to "My first Moodle plugin" in current page administration
+    And the following should exist in the "tool_grischeras_list" table:
       | name      | completed   | priority |
       | Foo 2     | 0           | 5        |
     And I log out

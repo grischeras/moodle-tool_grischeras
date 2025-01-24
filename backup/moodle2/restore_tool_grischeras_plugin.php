@@ -25,13 +25,28 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/backup/moodle2/restore_tool_plugin.class.php');
+
+/**
+ * Class description.
+ */
 class restore_tool_grischeras_plugin extends restore_tool_plugin {
 
+    /**
+     * Method descritpion.
+     *
+     * @return array
+     */
     protected function define_course_plugin_structure() {
         $paths[] = new restore_path_element('tool_grischeras', '/course/tool_grischeras');
         return $paths;
     }
 
+    /**
+     * Method description.
+     *
+     * @param $data
+     * @return void
+     */
     public function process_tool_grischeras($data) {
         global $DB;
         $data = (object) $data;
