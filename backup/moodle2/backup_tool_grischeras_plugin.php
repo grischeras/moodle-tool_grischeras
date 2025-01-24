@@ -39,7 +39,7 @@ class backup_tool_grischeras_plugin extends backup_plugin {
     protected function define_course_plugin_structure() {
         $plugin = $this->get_plugin_element();
 
-        $tool = new backup_nested_element('tool_grischeras', array('id'), array(
+        $tool = new backup_nested_element('tool_grischeras', ['id'], [
             'courseid',
             'name',
             'completed',
@@ -49,11 +49,11 @@ class backup_tool_grischeras_plugin extends backup_plugin {
             'description',
             'descriptionformat',
             'usermodified',
-        ));
+        ]);
 
-        $tool->set_source_table('tool_grischeras', array('courseid' => backup::VAR_COURSEID));
+        $tool->set_source_table('tool_grischeras', ['courseid' => backup::VAR_COURSEID]);
 
-        $tool->annotate_files('tool_grischeras', 'comments', null);
+        $tool->annotate_files('tool_grischeras', 'myfile', null);
 
         $plugin->add_child($tool);
 
