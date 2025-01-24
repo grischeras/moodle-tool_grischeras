@@ -29,6 +29,9 @@ use core_external\external_function_parameters;
 use core_external\external_value;
 use tool_grischeras\item;
 
+/**
+ * Class description.
+ */
 class edit_item extends \core_external\external_api {
     /**
      * Get the function parameters.
