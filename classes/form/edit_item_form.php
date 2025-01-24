@@ -38,6 +38,10 @@ require_once($CFG->libdir . '/formslib.php');
  */
 class edit_item_form extends moodleform {
     /**
+     * @var string
+     */
+    private string $action;
+    /**
      * Add elements to form.
      *
      * @return void
@@ -66,9 +70,12 @@ class edit_item_form extends moodleform {
         // Add hidden element for 'courseid'.
         $mform->addElement('hidden', 'courseid', $item->courseid);
         $mform->setType('courseid', PARAM_INT); // Make sure hidden elements also have their type set.
-
-        $mform->addElement('button', 'save', 'Save');
-        $mform->setType('save', PARAM_TEXT);
+        if ($this->action === 'c') {
+            $this->add_action_buttons();
+        } else {
+            $mform->addElement('button', 'save', 'Save');
+            $mform->setType('save', PARAM_TEXT);
+        }
     }
 
     /**
@@ -103,12 +110,14 @@ class edit_item_form extends moodleform {
         if ($itemid) {
             $params = ['id' => $itemid];
             $item = $DB->get_record('tool_grischeras', $params);
+            $this->action = 'u';
         } else {
             $item = new stdClass();
             $item->completed = 0;
             $item->priority = 1;
             $item->name = '';
             $item->courseid = required_param('courseid', PARAM_INT);
+            $this->action = 'c';
         }
 
         return $item;

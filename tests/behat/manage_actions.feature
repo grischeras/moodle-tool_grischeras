@@ -32,7 +32,10 @@ Feature: Creating, editing and deleting entries
       | Name      | Foo 2   |
       | Priority  | 5     |
     And I press "Save"
-    Then I navigate to "My first Moodle plugin" in current page administration
+    And I log out
+    When I log in as "admin"
+    And I am on "Course1" course homepage
+    And I navigate to "My first Moodle plugin" in current page administration
     And the following should exist in the "tool_grischeras_list" table:
       | name      | completed   | priority |
       | Foo 2     | 0           | 5        |
