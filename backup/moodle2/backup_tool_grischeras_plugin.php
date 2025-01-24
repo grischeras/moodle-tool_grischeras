@@ -47,7 +47,8 @@ class backup_tool_grischeras_plugin extends backup_plugin {
             'timecreated',
             'timemodified',
             'description',
-            'descriptionformat'
+            'descriptionformat',
+            'usermodified',
         ));
 
         $tool->set_source_table('tool_grischeras', array('courseid' => backup::VAR_COURSEID));

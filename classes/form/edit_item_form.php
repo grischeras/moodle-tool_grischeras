@@ -67,8 +67,8 @@ class edit_item_form extends moodleform {
         $mform->addElement('hidden', 'courseid', $item->courseid);
         $mform->setType('courseid', PARAM_INT); // Make sure hidden elements also have their type set.
 
-        $this->add_action_buttons();
-
+        $mform->addElement('button', 'save', 'Save');
+        $mform->setType('save', PARAM_TEXT);
     }
 
     /**

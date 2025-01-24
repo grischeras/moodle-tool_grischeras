@@ -24,6 +24,7 @@
 
 
 use tool_grischeras\external\delete;
+use tool_grischeras\external\edit_item;
 
 defined('MOODLE_INTERNAL') || die();
 
@@ -31,6 +32,13 @@ $functions = [
     'tool_grischeras_delete' => [
         'classname' => delete::class,
         'description' => 'Delete the selected item.',
+        'type' => 'write',
+        'ajax' => true,
+        'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
+    'tool_grischeras_edit' => [
+        'classname' => edit_item::class,
+        'description' => 'Edit the selected item.',
         'type' => 'write',
         'ajax' => true,
         'services' => [MOODLE_OFFICIAL_MOBILE_SERVICE],

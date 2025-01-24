@@ -33,21 +33,23 @@ require_login(null, false);
 // Check if they have permission to VIEW.
 $context = context_system::instance();
 require_capability('tool/grischeras:edit', $context);
+$item = new item('tool_grischeras');
+$item = $item->get_item($itemid);
 $PAGE->set_context($context);
 $PAGE->set_title(get_string('edititem', 'tool_grischeras', $itemid));
 $PAGE->set_heading(get_string('edititem', 'tool_grischeras', $itemid));
 $PAGE->set_url(new moodle_url('/admin/tool/grischeras/edititem.php', ['itemid' => $itemid]));
 $PAGE->set_secondary_navigation(false);
+$PAGE->requires->js_call_amd('tool_grischeras/edit', 'init', [['itemid' => $itemid, 'courseid' => $item->courseid]]);
 
 
-$item = new item('tool_grischeras');
+
 // Instantiate the myform form from within the plugin.
 $editform = new \tool_grischeras\form\edit_item_form(
     new moodle_url('/admin/tool/grischeras/edit.php', ['itemid' => $itemid]),
     ['itemid' => $itemid]
 );
 if ($editform->is_cancelled()) {
-    $item = $item->get_item($itemid);
     redirect(new moodle_url('/admin/tool/grischeras', ['id' => $item->courseid]));
 }
 

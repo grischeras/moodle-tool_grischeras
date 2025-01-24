@@ -1,16 +1,12 @@
 import Ajax from 'core/ajax';
-import * as notification from 'core/notification';
 
-const deleteAction = (itemId) => {
-      let element = document.getElementById(itemId);
-      notification.confirm('Are you sure?', function() {
-          Ajax.call([{
-              methodname: 'tool_grischeras_delete',
-              args: {itemid: itemId}
-          }])[0].done(() => {
-              // Delete item container from html.
-              element.parentNode.parentNode.remove();
-          });
+const deleteAction = (itemId, row) => {
+      Ajax.call([{
+          methodname: 'tool_grischeras_delete',
+          args: {itemid: itemId}
+      }])[0].done(() => {
+          // Delete item container from html.
+          row.remove();
       });
 };
 
@@ -19,11 +15,11 @@ export const init = () => {
         let element = event.srcElement;
         let requestedaction = element.dataset.action;
         let itemId = element.id;
-        switch (requestedaction) {
-         case 'delete':
+        if (requestedaction === 'delete') {
             event.preventDefault();
-            deleteAction(itemId);
-            break;
+            if (confirm('Are you sure?')) {
+                deleteAction(itemId, event.srcElement.parentNode.parentNode.parentNode);
+            }
         }
    });
 };
