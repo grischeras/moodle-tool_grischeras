@@ -30,6 +30,6 @@ $definitions = [
     'coursestatus' => [
         'mode' => cache_store::MODE_APPLICATION,
         'simplekeys' => true,
-    ]
+    ],
 ];
 

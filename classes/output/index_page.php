@@ -227,10 +227,9 @@ class index_page implements renderable, templatable {
      * @return bool
      * @throws coding_exception
      */
-    private function get_course_status(): bool
-    {
+    private function get_course_status(): bool {
         $cache = cache::make('tool_grischeras', 'coursestatus');
-        if(!$cache->get('coursestatus')){
+        if (!$cache->get('coursestatus')) {
             $cache->set('coursestatus', ($this->course->enddate < time()));
         }
 
