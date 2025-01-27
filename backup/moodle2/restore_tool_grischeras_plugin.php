@@ -41,13 +41,12 @@ class restore_tool_grischeras_plugin extends restore_tool_plugin {
         return $paths;
     }
 
+
     /**
-     * Method description.
-     *
      * @param $data
      * @return void
      */
-    public function process_tool_grischeras($data) {
+    public function process_tool_grischeras($data): void {
         global $DB;
         $data = (object) $data;
         // Store the old id.
