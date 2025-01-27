@@ -15,20 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version metadata for the plugintype_pluginname plugin.
+ * defining access rules
  *
  * @package   tool_grischeras
  * @copyright 2024, Alberto Sempreboni <alberto.sempreboni@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['cachedef_somedata'] = 'This is the description of the cache somedata';
-$string['create'] = 'Insert new item';
-$string['deleteconfirmation'] = 'Are you sure you want to delete item {a}?';
-$string['edititem'] = 'You are editing id: {$a}';
-$string['pluginname'] = 'My first Moodle plugin';
-$string['requiredcompleted'] = 'You must enter a value for completed';
-$string['requiredname'] = 'You must enter a name';
-$string['requiredpriority'] = 'Priority must a value between 1 and 10';
+declare(strict_types=1);
 
+defined('MOODLE_INTERNAL') || die();
+
+$definitions = [
+    'coursestatus' => [
+        'mode' => cache_store::MODE_APPLICATION,
+        'simplekeys' => true,
+    ]
+];
 

@@ -25,6 +25,8 @@ declare(strict_types = 1);
 
 namespace tool_grischeras\output;
 
+use core\exception\coding_exception;
+use core_cache\cache;
 use dml_exception;
 use renderable;
 use renderer_base;
@@ -88,7 +90,7 @@ class index_page implements renderable, templatable {
         return [
             'coursename' => $this->course->fullname,
             'coursename2' => $this->course->fullname,
-            'isended' => ($this->course->enddate < time()),
+            'isended' => $this->get_course_status(),
             'infos' => $this->get_course_infos(),
         ];
     }
@@ -217,5 +219,21 @@ class index_page implements renderable, templatable {
         }
 
         return $headers;
+    }
+
+    /**
+     * Method description.
+     *
+     * @return bool
+     * @throws coding_exception
+     */
+    private function get_course_status(): bool
+    {
+        $cache = cache::make('tool_grischeras', 'coursestatus');
+        if(!$cache->get('coursestatus')){
+            $cache->set('coursestatus', ($this->course->enddate < time()));
+        }
+
+        return $cache->get('coursestatus');
     }
 }
