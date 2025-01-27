@@ -44,8 +44,8 @@ class restore_tool_grischeras_plugin extends restore_tool_plugin {
 
     /**
      * Method description.
-     * 
-     * @param $data
+     *
+     * @param mixed $data
      * @return void
      */
     public function process_tool_grischeras($data): void {
